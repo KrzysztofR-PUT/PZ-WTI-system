@@ -168,13 +168,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DisabledSchController.cs" />
     <Compile Include="Controllers\DormController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\PresidentSchController.cs" />
     <Compile Include="Controllers\ScholarshipController.cs" />
-    <Compile Include="Controllers\SocialSchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -237,12 +234,15 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\PresidentSch\Index.cshtml" />
-    <Content Include="Views\SocialSch\Index.cshtml" />
-    <Content Include="Views\DisabledSch\Index.cshtml" />
     <Content Include="Views\Scholarship\Index.cshtml" />
     <Content Include="Views\Dorm\Index.cshtml" />
     <Content Include="Views\Dorm\BookDorm.cshtml" />
+    <Content Include="Views\Scholarship\PresidentSch.cshtml" />
+    <Content Include="Views\Scholarship\SocialSch.cshtml" />
+    <Content Include="Views\Scholarship\DisabledSch.cshtml" />
+    <Content Include="Views\Scholarship\PresidentSchDoc.cshtml" />
+    <Content Include="Views\Scholarship\SocialSchDoc.cshtml" />
+    <Content Include="Views\Scholarship\DisabledSchDoc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

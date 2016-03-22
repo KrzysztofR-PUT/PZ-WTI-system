@@ -17,7 +17,7 @@ namespace ScholarshipWebApplication.Controllers
         [Authorize]
         public ActionResult BookDorm()
         {
-            //tutaj bedzie to co Radzio zrobi w tym widoku
+            //Radzio
             return View();
         }
     }
