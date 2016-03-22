@@ -242,6 +242,7 @@
     <Content Include="Views\DisabledSch\Index.cshtml" />
     <Content Include="Views\Scholarship\Index.cshtml" />
     <Content Include="Views\Dorm\Index.cshtml" />
+    <Content Include="Views\Dorm\BookDorm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
