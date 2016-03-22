@@ -17,24 +17,23 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Stypednium1.0", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Student1.0", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Stypendia<b class="caret"></b>
-                        </a>
+                        <a href="/Scholarship/Index">eStypendium</a>
                         <ul class="dropdown-menu">
                             <li class="divider"></li>
                             <li>@Html.ActionLink("Stypednium rektora", "Index", "PresidentSch")</li>
                             <li class="divider"></li>
                             <li>@Html.ActionLink("Stypednium socjalne", "Index", "SocialSch")</li>
                             <li class="divider"></li>
-                            <li><a href="#">Stypednium dla niepełnosprawnych</a></li>
+                            <li>@Html.ActionLink("Stypednium dla niepełnosprawnych", "Index", "DisabledSch")</li>
                         </ul>
                     </li>
+                    <li>@Html.ActionLink("eAkademik", "Index", "Dorm")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -44,7 +43,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Projekt WTI i PZ</p>
         </footer>
     </div>
 
