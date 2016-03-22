@@ -13,5 +13,41 @@ namespace ScholarshipWebApplication.Controllers
         {
             return View();
         }
+
+        public ActionResult PresidentSch()
+        {
+            return View();
+        }
+
+        public ActionResult SocialSch()
+        {
+            return View();
+        }
+
+        public ActionResult DisabledSch()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult PresidentSchDoc()
+        {
+            //Radzio
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult SocialSchDoc()
+        {
+            //Radzio
+            return View();
+        }
+        
+        [Authorize]
+        public ActionResult DisabledSchDoc()
+        {
+            //Radzio
+            return View();
+        }
     }
 }
