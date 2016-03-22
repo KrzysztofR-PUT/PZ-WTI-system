@@ -8,16 +8,21 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <h2>System stypendialny</h2>
         <p>
-            System umożliwiający studentom składanie dokumentów stypendialnych do dziekanatu.
+            System umożliwiający studentom składanie dokumentów stypendialnych do dziekanatu. Można ubiegać się o następujące stypendia:
+            <ul>
+                <li>stypendium rektora,</li>
+                <li>stypendium socjalne,</li>
+                <li>stypendium dla niepełnosprawnych.</li>
+            </ul>
         </p>
-        <p><a class="btn btn-default" href=@Url.Action("Index", "Scholarship")>System Stypendium1.0</a></p>
+        <p><a class="btn btn-default" href=@Url.Action("Index", "Scholarship")>System eStypendium</a></p>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         <h2>System rezerwacji pokoi w domu studenckim</h2>
         <p>System umożliwiający rezerwację pokoi w domach studenckich.</p>
-        <p><a class="btn btn-default" href="http://img1.demotywatoryfb.pl//uploads/201306/1372335925_zcvobs_600.jpg">System Akademik1.0</a></p>
+        <p><a class="btn btn-default" href=@Url.Action("Index", "Dorm")>System eAkademik</a></p>
     </div>
 </div>

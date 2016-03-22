@@ -3266,8 +3266,8 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
 }
 
 .dropdown-menu .divider {
-  height: 1px;
-  margin: 0 0;
+  height: 0px;
+  margin: 5 0;
   overflow: hidden;
   background-color: #e5e5e5;
 }
