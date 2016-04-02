@@ -176,6 +176,15 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Database\ForDisabledScholarshipProps.cs" />
+    <Compile Include="Models\Database\StudentContext.cs" />
+    <Compile Include="Models\Database\Address.cs" />
+    <Compile Include="Models\Database\Course.cs" />
+    <Compile Include="Models\Database\DormDocumentProps.cs" />
+    <Compile Include="Models\Database\FamilyMembersIncome.cs" />
+    <Compile Include="Models\Database\SocialScholarshipProps.cs" />
+    <Compile Include="Models\Database\Student.cs" />
+    <Compile Include="Models\Database\Studies.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -236,13 +245,17 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Scholarship\Index.cshtml" />
     <Content Include="Views\Dorm\Index.cshtml" />
-    <Content Include="Views\Dorm\BookDorm.cshtml" />
     <Content Include="Views\Scholarship\PresidentSch.cshtml" />
     <Content Include="Views\Scholarship\SocialSch.cshtml" />
-    <Content Include="Views\Scholarship\DisabledSch.cshtml" />
     <Content Include="Views\Scholarship\PresidentSchDoc.cshtml" />
     <Content Include="Views\Scholarship\SocialSchDoc.cshtml" />
     <Content Include="Views\Scholarship\DisabledSchDoc.cshtml" />
+    <Content Include="Views\Dorm\AccomodationDoc.cshtml" />
+    <Content Include="Views\Dorm\Delete.cshtml" />
+    <Content Include="Views\Dorm\Details.cshtml" />
+    <Content Include="Views\Dorm\Edit.cshtml" />
+    <Content Include="Views\Dorm\Index2.cshtml" />
+    <Content Include="Views\Scholarship\DisabledSch.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

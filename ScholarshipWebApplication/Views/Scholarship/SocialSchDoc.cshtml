@@ -1,7 +1,56 @@
-﻿
+﻿@model ScholarshipWebApplication.Models.Database.SocialScholarshipProps
+
 @{
-    ViewBag.Title = "SocialSchDoc";
+    ViewBag.Title = "Social Scholarship Document";
 }
 
-<h2>SocialSchDoc</h2>
+<h2>Social Scholarship Document</h2>
 
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model=>model.kind, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model=>model.kind)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.incomeYear, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.incomeYear)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.netIncome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.netIncome)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.lostIncome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.lostIncome)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.gainedIncome, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.gainedIncome)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model=>model.incomePerPersonPerMonth, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.incomePerPersonPerMonth, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+}
