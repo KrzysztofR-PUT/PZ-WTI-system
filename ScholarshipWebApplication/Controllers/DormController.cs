@@ -13,7 +13,7 @@ namespace ScholarshipWebApplication.Controllers
         // GET: Dorm
         public ActionResult Index()
         {
-            return View(db.DocumentProperties.ToList());
+            return View();
         }
 
         // GET: Dorm/Details/5
@@ -42,7 +42,8 @@ namespace ScholarshipWebApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AccomodationDoc([Bind(Include = "DocID,DistanceFromHome,TransportDifficulties,FamilyCount,IncomePerPerson,IsDisabled,isFullFamily,CurrentAcademicYear")] DormDocumentProps dormDocumentProps)
+        public ActionResult AccomodationDoc([Bind(Include = "DistanceFromHome,TransportDifficulties,"+
+            "FamilyCount,IncomePerPerson,IsDisabled,isFullFamily,CurrentAcademicYear")] DormDocumentProps dormDocumentProps)
         {
             if (ModelState.IsValid)
             {

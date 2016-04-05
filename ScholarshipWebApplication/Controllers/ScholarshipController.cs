@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScholarshipWebApplication.Models.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace ScholarshipWebApplication.Controllers
 {
     public class ScholarshipController : Controller
     {
+        private StudentContext db = new StudentContext();
+
         // GET: Scholarship
         public ActionResult Index()
         {
@@ -42,7 +45,20 @@ namespace ScholarshipWebApplication.Controllers
             //Radzio
             return View();
         }
-        
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SocialSchDoc([Bind(Include = "kind,incomeYear,netIncome,lostIncome,gainedIncome,incomePerPersonPerMonth,alimonyCuts")] SocialScholarshipProps socialScholarshipProps)
+        {
+            if (ModelState.IsValid)
+            {
+                db.SocialProperties.Add(socialScholarshipProps);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
         [Authorize]
         public ActionResult DisabledSchDoc()
         {
