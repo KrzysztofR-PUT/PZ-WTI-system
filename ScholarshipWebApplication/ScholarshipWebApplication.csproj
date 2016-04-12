@@ -187,6 +187,7 @@
     <Compile Include="Models\Database\Studies.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModeltoBasicDoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -199,6 +200,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -251,11 +253,8 @@
     <Content Include="Views\Scholarship\SocialSchDoc.cshtml" />
     <Content Include="Views\Scholarship\DisabledSchDoc.cshtml" />
     <Content Include="Views\Dorm\AccomodationDoc.cshtml" />
-    <Content Include="Views\Dorm\Delete.cshtml" />
-    <Content Include="Views\Dorm\Details.cshtml" />
-    <Content Include="Views\Dorm\Edit.cshtml" />
-    <Content Include="Views\Dorm\Index2.cshtml" />
     <Content Include="Views\Scholarship\DisabledSch.cshtml" />
+    <Content Include="Views\Home\BasicDoc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
