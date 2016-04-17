@@ -2,12 +2,12 @@
 
 namespace ScholarshipWebApplication.Models.Database
 {
+    public enum DegreeOfRelationship
+    {
+        ojciec, matka, siostra, brat
+    }
     public class FamilyMembersIncome
     {
-        public enum DegreeOfRelationship
-        {
-            ojciec, matka, siostra, brat
-        }
         [Key]
         public string IncomeID { get; set; }
         public string firstName { get; set; }

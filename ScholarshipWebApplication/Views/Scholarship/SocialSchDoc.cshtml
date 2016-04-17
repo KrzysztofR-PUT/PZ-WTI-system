@@ -1,5 +1,5 @@
 ﻿@model ScholarshipWebApplication.Models.Database.SocialScholarshipProps
-
+@using ScholarshipWebApplication.Models.Database
 @{
     ViewBag.Title = "Social Scholarship Document";
 }
@@ -9,7 +9,6 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
     <div class="form-horizontal">
         <div class="form-group">
             @Html.LabelFor(model=>model.kind, htmlAttributes: new { @class = "control-label col-md-2" })

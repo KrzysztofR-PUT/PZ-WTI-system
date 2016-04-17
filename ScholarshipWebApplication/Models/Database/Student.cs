@@ -18,7 +18,7 @@ namespace ScholarshipWebApplication.Models.Database
         public string LastName { get; set; }
 
         [Required]
-        [DisplayName("NrAlbumu")]
+        [DisplayName("Nr Albumu")]
         [StringLength(6,ErrorMessage ="Nr albumu ma 6 Cyfr !")]
        
         public string RegistryNumber { get; set; } //nr albumu

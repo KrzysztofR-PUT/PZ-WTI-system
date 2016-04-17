@@ -3,15 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ScholarshipWebApplication.Models.Database
 {
+    public enum SocialScholarshipKind
+    {
+        normalne,
+        zwiększone_akademik,
+        zwiększone_inne
+    }
     public class SocialScholarshipProps
     {
-        public enum SocialScholarshipKind
-        {
-            normalne,
-            zwiększone_akademik,
-            zwiększone_inne
-        }
-
         [Key]
         public int DocID { get; set; }
         public SocialScholarshipKind kind { get; set; }
@@ -23,6 +22,7 @@ namespace ScholarshipWebApplication.Models.Database
         public float alimonyCuts { get; set; } //odliczenia z tytułu płacenia alimentów
         public string bankAccountNmb { get; set; }
         public bool isDocSended { get; set; }
+        public virtual Student student { get; set; }
         public virtual ICollection<FamilyMembersIncome> familyMembersIncome { get; set; }
     }
 }
