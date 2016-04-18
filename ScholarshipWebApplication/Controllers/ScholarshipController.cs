@@ -7,11 +7,10 @@ using System.Linq;
 
 namespace ScholarshipWebApplication.Controllers
 {
-    public class ScholarshipController : Controller
+    public class ScholarshipController : MainController
     {
         private StudentContext db = new StudentContext();
-
-        // GET: Scholarship
+        
         public ActionResult Index()
         {
             return View();
@@ -22,7 +21,8 @@ namespace ScholarshipWebApplication.Controllers
             return View();
         }
 
-        public ActionResult SocialSch()
+        [Authorize]
+        public ActionResult PresidentSchDoc()
         {
             return View();
         }
@@ -33,25 +33,61 @@ namespace ScholarshipWebApplication.Controllers
         }
 
         [Authorize]
-        public ActionResult PresidentSchDoc()
+        public ActionResult DisabledSchDoc()
         {
-            //Radzio
+            ApplicationUser user = getUser();
+            ViewBag.isSended = false;
+
+            if (user.student != null)
+            {
+                int id = user.student.StudentID;
+
+                var props = from docs in db.ForDisabledProperties where docs.student.StudentID == id select docs;
+
+                if (props.Any())
+                {
+                    ViewBag.isSended = true;
+                }
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DisabledSchDoc(ForDisabledScholarshipProps forDisabledProperties)
+        {
+            if (ModelState.IsValid)
+            {
+                forDisabledProperties.docState = DocState.sended;
+                forDisabledProperties.student = db.Student.Find(getUser().student.StudentID);
+                db.ForDisabledProperties.Add(forDisabledProperties);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        public ActionResult SocialSch()
+        {
             return View();
         }
 
         [Authorize]
         public ActionResult SocialSchDoc()
         {
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            int id = manager.FindById(User.Identity.GetUserId()).student.StudentID;
-
+            ApplicationUser user = getUser();
             ViewBag.isSended = false;
-            var props = from docs in db.SocialProperties where docs.student.StudentID == id select docs;
 
-            if (props != null)
+            if (user.student != null)
             {
-                ViewBag.isSended = true;
-            }
+                int id = user.student.StudentID;                
+                var props = from docs in db.SocialProperties where docs.student.StudentID == id select docs;
+
+                if (props.Any())
+                {
+                    ViewBag.isSended = true;
+                }
+            }            
             return View();
         }
 
@@ -62,23 +98,12 @@ namespace ScholarshipWebApplication.Controllers
             if (ModelState.IsValid)
             {
                 socialScholarshipProps.docState = DocState.sended;
-                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-                ApplicationUser user = manager.FindById(User.Identity.GetUserId());
-                db.Student.Find(user.student.StudentID);
-                socialScholarshipProps.student = db.Student.Find(user.student.StudentID);
-
+                socialScholarshipProps.student = db.Student.Find(getUser().student.StudentID);
                 db.SocialProperties.Add(socialScholarshipProps);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
-        }
-
-        [Authorize]
-        public ActionResult DisabledSchDoc()
-        {
-            //Radzio
-            return View();
-        }
+        }      
     }
 }

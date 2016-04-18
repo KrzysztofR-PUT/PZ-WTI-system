@@ -15,6 +15,7 @@ namespace ScholarshipWebApplication.Models.Database
         public DateTime decisionStartDate { get; set; }
         public DateTime decisionEndDate { get; set; }
         public bool isDecisionPermanent { get; set; }
+        public DocState docState { get; set; }
         public virtual Student student { get; set; }
     }
 }
