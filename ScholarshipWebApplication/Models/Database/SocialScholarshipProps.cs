@@ -21,7 +21,7 @@ namespace ScholarshipWebApplication.Models.Database
         public float incomePerPersonPerMonth { get; set; }
         public float alimonyCuts { get; set; } //odliczenia z tytułu płacenia alimentów
         public string bankAccountNmb { get; set; }
-        public bool isDocSended { get; set; }
+        public DocState docState { get; set; }
         public virtual Student student { get; set; }
         public virtual ICollection<FamilyMembersIncome> familyMembersIncome { get; set; }
     }
