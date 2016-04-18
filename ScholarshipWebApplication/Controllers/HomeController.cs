@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using ScholarshipWebApplication.Models.Database;
 using ScholarshipWebApplication.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace ScholarshipWebApplication.Controllers
 {
@@ -34,6 +32,12 @@ namespace ScholarshipWebApplication.Controllers
             {
                 db.Student.Add(tuple.Student);
                 db.Address.Add(tuple.Adres);
+
+                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(User.Identity.GetUserId());
+                currentUser.student = tuple.Student;
+                manager.UpdateAsync(currentUser);
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

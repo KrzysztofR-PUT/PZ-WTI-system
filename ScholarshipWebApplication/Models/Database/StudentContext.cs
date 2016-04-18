@@ -2,6 +2,10 @@
 
 namespace ScholarshipWebApplication.Models.Database
 {
+    public enum DocState
+    {
+        returned, sended, accepted, rejected
+    }
     public class StudentContext : DbContext
     {
         public DbSet<DormDocumentProps> DocumentProperties { get; set; }

@@ -1,17 +1,16 @@
-﻿using ScholarshipWebApplication.Models.Database;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using ScholarshipWebApplication.Models;
+using ScholarshipWebApplication.Models.Database;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace ScholarshipWebApplication.Controllers
 {
-    public class ScholarshipController : Controller
+    public class ScholarshipController : MainController
     {
         private StudentContext db = new StudentContext();
-
-        // GET: Scholarship
+        
         public ActionResult Index()
         {
             return View();
@@ -22,7 +21,8 @@ namespace ScholarshipWebApplication.Controllers
             return View();
         }
 
-        public ActionResult SocialSch()
+        [Authorize]
+        public ActionResult PresidentSchDoc()
         {
             return View();
         }
@@ -33,37 +33,77 @@ namespace ScholarshipWebApplication.Controllers
         }
 
         [Authorize]
-        public ActionResult PresidentSchDoc()
+        public ActionResult DisabledSchDoc()
         {
-            //Radzio
-            return View();
-        }
+            ApplicationUser user = getUser();
+            ViewBag.isSended = false;
 
-        [Authorize]
-        public ActionResult SocialSchDoc()
-        {
-            //Radzio
+            if (user.student != null)
+            {
+                int id = user.student.StudentID;
+
+                var props = from docs in db.ForDisabledProperties where docs.student.StudentID == id select docs;
+
+                if (props.Any())
+                {
+                    ViewBag.isSended = true;
+                }
+            }
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SocialSchDoc([Bind(Include = "kind,incomeYear,netIncome,lostIncome,gainedIncome,incomePerPersonPerMonth,alimonyCuts")] SocialScholarshipProps socialScholarshipProps)
+        public ActionResult DisabledSchDoc(ForDisabledScholarshipProps forDisabledProperties)
         {
             if (ModelState.IsValid)
             {
-                db.SocialProperties.Add(socialScholarshipProps);
+                forDisabledProperties.docState = DocState.sended;
+                forDisabledProperties.student = db.Student.Find(getUser().student.StudentID);
+                db.ForDisabledProperties.Add(forDisabledProperties);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View();
         }
 
-        [Authorize]
-        public ActionResult DisabledSchDoc()
+        public ActionResult SocialSch()
         {
-            //Radzio
             return View();
         }
+
+        [Authorize]
+        public ActionResult SocialSchDoc()
+        {
+            ApplicationUser user = getUser();
+            ViewBag.isSended = false;
+
+            if (user.student != null)
+            {
+                int id = user.student.StudentID;                
+                var props = from docs in db.SocialProperties where docs.student.StudentID == id select docs;
+
+                if (props.Any())
+                {
+                    ViewBag.isSended = true;
+                }
+            }            
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SocialSchDoc( SocialScholarshipProps socialScholarshipProps)
+        {
+            if (ModelState.IsValid)
+            {
+                socialScholarshipProps.docState = DocState.sended;
+                socialScholarshipProps.student = db.Student.Find(getUser().student.StudentID);
+                db.SocialProperties.Add(socialScholarshipProps);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }      
     }
 }

@@ -22,6 +22,7 @@ namespace ScholarshipWebApplication.Models.Database
         public bool isFullFamily { get; set; }
         [DisplayName("Rok studiów")]
         public string CurrentAcademicYear { get; set; }
+        public DocState docState { get; set; }
         public virtual Student student { get; set; }
     }
 }
