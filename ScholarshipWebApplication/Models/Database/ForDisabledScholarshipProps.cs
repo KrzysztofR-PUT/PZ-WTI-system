@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ScholarshipWebApplication.Models.Database
 {
+    public enum DisabilityLevel
+    {
+        lekki, umiarkowany, znaczny
+    }
     public class ForDisabledScholarshipProps
     {
-        public enum DisabilityLevel
-        {
-            lekki, umiarkowany, znaczny
-        }
         [Key]
         public int DocID { get; set; }
         [DisplayName("Stopień Niepełnosprawności")]
@@ -20,5 +20,7 @@ namespace ScholarshipWebApplication.Models.Database
         public DateTime decisionEndDate { get; set; }
         [DisplayName("Czy decyzja jest stała")]
         public bool isDecisionPermanent { get; set; }
+        public DocState docState { get; set; }
+        public virtual Student student { get; set; }
     }
 }

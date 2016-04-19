@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ScholarshipWebApplication.Models.Database
 {
+    public enum DegreeOfRelationship
+    {
+        ojciec, matka, siostra, brat
+    }
     public class FamilyMembersIncome
     {
-        public enum DegreeOfRelationship
-        {
-            ojciec, matka, siostra, brat
-        }
         [Key]
         public string IncomeID { get; set; }
         [Required(ErrorMessage = "Imię jest wymagane")]
