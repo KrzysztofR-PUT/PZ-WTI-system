@@ -6,13 +6,12 @@
     ViewBag.Title = "Formularz podstawowy";
 }
 
-<h2>Wypełnij formularz</h2>
+<h2>Przed wypełnianiem dokumentów, należy podać podstawowe dane osobowe.</h2>
 
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
     <h3>Informacje o tobie</h3>
     <br />
     <div class="form-horizontal">
