@@ -1,7 +1,194 @@
-﻿
+﻿@model ScholarshipWebApplication.Models.Database.PresidentSchProp
+
+
 @{
-    ViewBag.Title = "PresidentSchDoc";
+    ViewBag.Title = "Stypendium rektora";
 }
 
-<h2>PresidentSchDoc</h2>
+<h2 class="col-md-4 col-md-offset-4">Stypendium rektora</h2>
 
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <br />
+    <br />
+    <br />
+    <br />
+    
+
+    <div class="col-md-offset-2 col-md-10">
+
+        <table class="table table-bordered">
+
+            <thead>
+                <tr>
+                    <th><h3>#</h3></th>
+                    <th> <h3 style="text-align:center;">Rodzaj osiągnięcia</h3> </th>
+                    <th> <h3 style="text-align:center;">Punkty*</h3> </th>
+                </tr>
+            </thead>      
+
+            <tbody>
+
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Średnia ważona ocen uzyskanych w poprzednim roku studiów (dwa ostatnie semestry studiów), niemniejsza niż 4,0 pomnożona przez 10</td>
+                    <td>@Html.EditorFor(model => model.table.average, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.table.average, "", new { @class = "text-danger" })</td>
+                </tr>
+
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Aktywność w jednym kole naukowym, wskazanym przez studenta (0 – 3) pkt.</td>
+                    <td>@Html.EditorFor(model => model.table.activity_researchCircle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.table.activity_researchCircle, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Wystąpienia seminaryjne lub konferencyjne o charakterze naukowym na szczeblu:
+                        uczelnianym, krajowym, międzynarodowym – odpowiednio 3, 6, 9 pkt.
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.table.superventions, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.table.superventions, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">4</th>
+                    <td>Opublikowanie prac w recenzowanych czasopismach polskich: liczba prac x2 pkt.
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.table.polishMagazines_publ, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.table.polishMagazines_publ, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">5</th>
+                    <td>Opublikowanie prac w recenzowanych zagranicznych: liczba prac x4 pkt.
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.table.externalMagazines_publ, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.table.externalMagazines_publ, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">6</th>
+                    <td>
+                        Opublikowanie prac czasopismach z Listy Filadelfijskiej: liczba prac x6 pkt.
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.table.LFMagazines_publ, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.table.LFMagazines_publ, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">7</th>
+                    <td>
+                        Uczestnictwo w zawodach sportowych (największa liczba z punktów a, b, c):<br/><br />
+                        a)	Indywidualne/ drużynowe mistrzostwa Polski/ akademickie mistrzostwa Polski (0-15) pkt.<br /><br /><br />
+                        b)	Indywidualne/ drużynowe mistrzostwa Europy/  akademickie mistrzostwa Europy (11-30) pkt.<br /><br /><br />
+                        c)	Indywidualne/ drużynowe mistrzostwa świata/ Uniwersjada (25-50) pkt.
+
+                    </td>
+                    <td>
+                        a)@Html.EditorFor(model => model.table.polishSportCompetition, new { htmlAttributes = new { @class = "form-control" } })<br />
+                        @Html.ValidationMessageFor(model => model.table.polishSportCompetition, "", new { @class = "text-danger" })
+                        b) @Html.EditorFor(model => model.table.europeanSportCompetition, new { htmlAttributes = new { @class = "form-control" } })<br />
+                        @Html.ValidationMessageFor(model => model.table.europeanSportCompetition, "", new { @class = "text-danger" })
+                        c) @Html.EditorFor(model => model.table.worldcup, new { htmlAttributes = new { @class = "form-control" } })<br />
+                        @Html.ValidationMessageFor(model => model.table.worldcup, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <th scope="row">8</th>
+                    <td>
+                        Osiągnięcia na polu artystycznym (0-15) pkt.
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.table.artAchievements, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.table.artAchievements, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <th scope="row">9</th>
+                    <td>
+                        Inne potwierdzone osiągnięcia (0-5) pkt.
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.table.anotherAchievements, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.table.anotherAchievements, "", new { @class = "text-danger" })
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+           
+    </div>
+
+    <br />
+    <br />
+
+
+    <div class="row col-md-offset-2 col-md-10">
+        <p>*W przypadku popełnienia błędu w punktacji, administracja przydzieli odpowiednią liczbę punktów na podstawie załączonych dokumentów.
+        </p>
+    </div>
+
+    <div class="row "  >
+        <div class="checkbox col-md-offset-2 col-md-10">
+            @Html.CheckBoxFor(model => model.statement_statute)
+            <p>
+                Oświadczam, że zapoznałem się z Regulaminem przyznawania pomocy materialnej studentom Politechniki Poznańskiej<br />
+                (Zarządzenie nr 31 Rektora Politechniki Poznańskiej z 30 września 2014 r.).
+            </p>
+            @Html.ValidationMessageFor(model => model.statement_statute, "", new { @class = "text-danger" })
+        </div>     
+    </div>
+
+    <div class="row">
+        <div class="checkbox col-md-offset-2 col-md-10">
+            @Html.CheckBoxFor(model => model.statement_bankAccount)
+            <p>
+                Świadomy(a) odpowiedzialności karnej, cywilno-prawnej i dyscyplinarnej za podanie nieprawdziwych danych, oświadczam, że wszystkie dane zawarte w niniejszym wniosku i załączonych dokumentach są zgodne ze stanem faktycznym.<strong>Przyznaną kwotę stypendium proszę przelać na moje konto bankowe.</strong>
+            </p>
+            @Html.ValidationMessageFor(model => model.statement_bankAccount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="row">
+      
+        <div class="checkbox col-md-offset-2 col-md-10">
+            @Html.CheckBoxFor(model => model.statement_dataAgreement)
+            <p>Wyrażam zgodę na przetwarzanie przez Politechnikę Poznańską danych osobowych zawartych we wniosku
+               o przyznanie pomocy materialnej (zgodnie z ustawą z dnia 29 sierpnia 1997 r. o ochronie danych osobowych Dz. U. 2014 poz. 1182).
+            </p>
+            @Html.ValidationMessageFor(model => model.statement_dataAgreement, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Zatwierdź" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<br />
+<br />
+<div>
+    @Html.ActionLink("Powrót", "Index", "Scholarship")
+</div>

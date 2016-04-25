@@ -24,6 +24,41 @@ namespace ScholarshipWebApplication.Controllers
         [Authorize]
         public ActionResult PresidentSchDoc()
         {
+            ApplicationUser user = getUser();
+            ViewBag.isSended = false;
+
+            if (user.student != null)
+            {
+                int id = user.student.StudentID;
+
+                var props = from docs in db.PresidentSchProp where docs.student.StudentID == id select docs;
+
+                if (props.Any())
+                {
+                    ViewBag.isSended = true;
+                }
+            }
+            return View();
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PresidentSchDoc(PresidentSchProp pr)
+        {
+            
+
+            if (ModelState.IsValid)
+            {
+                pr.docState = DocState.sended;
+                pr.student = db.Student.Find(getUser().student.StudentID);
+                db.PresidentSchProp.Add(pr);
+                db.ForPresidentSchProp.Add(pr.table);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+           
+
             return View();
         }
 

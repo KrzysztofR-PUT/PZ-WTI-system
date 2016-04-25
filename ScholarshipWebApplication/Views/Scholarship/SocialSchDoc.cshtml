@@ -1,10 +1,10 @@
 ﻿@model ScholarshipWebApplication.Models.Database.SocialScholarshipProps
 @using ScholarshipWebApplication.Models.Database
 @{
-    ViewBag.Title = "Social Scholarship Document";
+    ViewBag.Title = "Stypendium socjalne";
 }
 
-<h2>Social Scholarship Document</h2>
+<h2>Stypendium socjalne</h2>
 
 @using (Html.BeginForm())
 {
@@ -67,7 +67,7 @@
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Zatwierdź" class="btn btn-default" />
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back", "Index", "Scholarship")
+    @Html.ActionLink("Powrót", "Index", "Scholarship")
 </div>
 
 @section Scripts {

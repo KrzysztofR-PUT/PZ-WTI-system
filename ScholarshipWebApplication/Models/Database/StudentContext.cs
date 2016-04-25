@@ -15,5 +15,8 @@ namespace ScholarshipWebApplication.Models.Database
         public DbSet<Studies> Studies { get; set; }
         public DbSet<SocialScholarshipProps> SocialProperties { get; set; }
         public DbSet<ForDisabledScholarshipProps> ForDisabledProperties { get; set; }
+
+        public DbSet<PresidentSchProp> PresidentSchProp { get; set; }
+        public DbSet<ForPresidentSchProp> ForPresidentSchProp { get; set; }
     }
 }
