@@ -30,14 +30,11 @@ namespace ScholarshipWebApplication.Controllers
             tuple.Student.address = tuple.Adres;
             if (ModelState.IsValid)
             {
-                db.Student.Add(tuple.Student);
-                db.Address.Add(tuple.Adres);
-
                 var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
                 var currentUser = manager.FindById(User.Identity.GetUserId());
                 currentUser.student = tuple.Student;
                 manager.UpdateAsync(currentUser);
-
+                db.Address.Add(tuple.Adres);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
