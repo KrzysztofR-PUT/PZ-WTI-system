@@ -65,6 +65,33 @@
                 </div>
             </div>
 
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><label>Akcja</label></th>
+                        <th>@Html.LabelFor(model => model.familyMembersIncome.FirstOrDefault().firstName)</th>
+                        <th>@Html.LabelFor(model => model.familyMembersIncome.FirstOrDefault().lastName)</th>
+                        <th>@Html.LabelFor(model => model.familyMembersIncome.FirstOrDefault().birthdayYear)</th>
+                        <th>@Html.LabelFor(model => model.familyMembersIncome.FirstOrDefault().relationship)</th>
+                        <th>@Html.LabelFor(model => model.familyMembersIncome.FirstOrDefault().taxedIncome)</th>
+                        <th>@Html.LabelFor(model => model.familyMembersIncome.FirstOrDefault().untaxedIncome)</th>
+                        <th>@Html.LabelFor(model => model.familyMembersIncome.FirstOrDefault().total)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><button class="btn btn-default">Dodaj</button></td>
+                        <td>@Html.EditorFor(model => model.familyMembersIncome.FirstOrDefault().firstName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                        <th>@Html.EditorFor(model => model.familyMembersIncome.FirstOrDefault().lastName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</th>
+                        <td>@Html.EditorFor(model => model.familyMembersIncome.FirstOrDefault().birthdayYear, new { htmlAttributes = new { @class = "col-md-10" } })</td>
+                        <td>@Html.EditorFor(model => model.familyMembersIncome.FirstOrDefault().relationship, new { htmlAttributes = new { @class = "col-md-10" } })</td>
+                        <td>@Html.EditorFor(model => model.familyMembersIncome.FirstOrDefault().taxedIncome, new { htmlAttributes = new { @class = "col-md-10" } })</td>
+                        <td>@Html.EditorFor(model => model.familyMembersIncome.FirstOrDefault().untaxedIncome, new { htmlAttributes = new { @class = "col-md-10" } })</td>
+                        <td>@Html.EditorFor(model => model.familyMembersIncome.FirstOrDefault().total, new { htmlAttributes = new { @class = "col-md-10" } })</td>
+                    </tr>
+                </tbody>
+            </table>
+
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Create" class="btn btn-default" />
