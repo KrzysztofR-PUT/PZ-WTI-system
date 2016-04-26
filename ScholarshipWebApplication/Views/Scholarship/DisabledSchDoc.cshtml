@@ -1,7 +1,7 @@
 ﻿@model ScholarshipWebApplication.Models.Database.ForDisabledScholarshipProps
 
 @{
-    ViewBag.Title = "Stypendium dla osób niepełnosprawnych";
+    ViewBag.Title = "Wniosek o przyznanie stypednium specjalnego dla osób niepełnosprawnych";
 }
 
 <h2> Stypendium dla osób niepełnosprawnych</h2>
@@ -16,50 +16,111 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <div class="form-group">
-                @Html.LabelFor(model => model.disabilityLevel, htmlAttributes: new { @class = "control-label col-md-2" })
-            
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.disabilityLevel, new { htmlAttributes = new { @class = "form-control" } })      
-                </div>
-            </div>
+        <div class="col-md-offset-2 col-md-10">
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.decisionStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.decisionStartDate, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th scope="row">Proszę o przyznanie stypednium specjalnego dla osób niepełnosprawnych. Mam orzeczony stopień niepełnosprawności</th>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>@Html.RadioButtonFor(model => model.disabilityLevel, ScholarshipWebApplication.Models.Database.DisabilityLevel.lekki, new { id = ScholarshipWebApplication.Models.Database.DisabilityLevel.lekki })Lekki</label> <br />
+                            <label>@Html.RadioButtonFor(model => model.disabilityLevel, ScholarshipWebApplication.Models.Database.DisabilityLevel.umiarkowany, new { id = ScholarshipWebApplication.Models.Database.DisabilityLevel.umiarkowany })Umiarkowany</label> <br />
+                            <label>@Html.RadioButtonFor(model => model.disabilityLevel, ScholarshipWebApplication.Models.Database.DisabilityLevel.znaczny, new { id = ScholarshipWebApplication.Models.Database.DisabilityLevel.znaczny })Znaczny</label> <br />
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.decisionEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.decisionEndDate, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
+            <br />
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.isDecisionPermanent, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.CheckBoxFor(model => model.isDecisionPermanent)
-                </div>
-            </div>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th scope="row">Orzeczenie jest ważne</th>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.decisionStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.decisionStartDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.decisionStartDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.decisionEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.decisionEndDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.decisionEndDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>@Html.CheckBoxFor(model => model.isDecisionPermanent)na stałe</label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    }
-}
 
-<div>
-    @Html.ActionLink("Powrót", "Index", "Scholarship")
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+        
+                <div class="form-horizontal">
+                    <!--
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.disabilityLevel, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.ValidationMessageFor(model => model.disabilityLevel, "", new { @class = "text-danger" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.disabilityLevel, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.decisionStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.decisionStartDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.decisionStartDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.decisionEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.decisionEndDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.decisionEndDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.isDecisionPermanent, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.CheckBoxFor(model => model.isDecisionPermanent)
+                        </div>
+                    </div>
+                    -->
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+               
+                }
+                }
+         
+
+                <div>
+                    @Html.ActionLink("Powrót", "Index", "Scholarship")
+                </div>
+
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
 
