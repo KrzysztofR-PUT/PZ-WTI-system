@@ -207,6 +207,9 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Database\ForDisabledScholarshipProps.cs" />
+    <Compile Include="Models\Database\ForPresidentSchProp.cs" />
+    <Compile Include="Models\Database\PresidentSchProp.cs" />
+    <Compile Include="Models\Database\Rooms.cs" />
     <Compile Include="Models\Database\StudentContext.cs" />
     <Compile Include="Models\Database\Address.cs" />
     <Compile Include="Models\Database\Course.cs" />
@@ -217,6 +220,7 @@
     <Compile Include="Models\Database\Studies.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\SocialMembersViewModel.cs" />
     <Compile Include="Models\ViewModeltoBasicDoc.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -289,6 +293,7 @@
     <Content Include="Views\Dorm\AccomodationDoc.cshtml" />
     <Content Include="Views\Scholarship\DisabledSch.cshtml" />
     <Content Include="Views\Home\BasicDoc.cshtml" />
+    <Content Include="Views\Scholarship\_AllMembers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

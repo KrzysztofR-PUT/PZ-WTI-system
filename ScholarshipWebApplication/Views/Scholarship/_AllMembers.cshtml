@@ -1,0 +1,21 @@
+﻿@model ScholarshipWebApplication.Models.SocialMembersViewModel
+
+
+            @if (Model != null && Model.props.familyMembersIncome!= null)
+            {
+                for (int i = 0; i < Model.props.familyMembersIncome.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.props.familyMembersIncome.ElementAt(i).firstName)
+                            @Html.DisplayFor(modelItem => Model.props.familyMembersIncome.ElementAt(i).lastName)
+                            @Html.DisplayFor(modelItem => Model.props.familyMembersIncome.ElementAt(i).birthdayYear)
+                            @Html.DisplayFor(modelItem => Model.props.familyMembersIncome.ElementAt(i).relationship)
+                            @Html.DisplayFor(modelItem => Model.props.familyMembersIncome.ElementAt(i).taxedIncome)
+                            @Html.DisplayFor(modelItem => Model.props.familyMembersIncome.ElementAt(i).untaxedIncome)
+                            @Html.DisplayFor(modelItem => Model.props.familyMembersIncome.ElementAt(i).total)
+                        </td>
+                    </tr>
+                    @Html.HiddenFor(modelItem => Model.props.familyMembersIncome.ElementAt(i).IncomeID)
+                }
+            }

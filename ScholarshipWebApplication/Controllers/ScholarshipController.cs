@@ -24,6 +24,41 @@ namespace ScholarshipWebApplication.Controllers
         [Authorize]
         public ActionResult PresidentSchDoc()
         {
+            ApplicationUser user = getUser();
+            ViewBag.isSended = false;
+
+            if (user.student != null)
+            {
+                int id = user.student.StudentID;
+
+                var props = from docs in db.PresidentSchProp where docs.student.StudentID == id select docs;
+
+                if (props.Any())
+                {
+                    ViewBag.isSended = true;
+                }
+            }
+            return View();
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PresidentSchDoc(PresidentSchProp pr)
+        {
+            
+
+            if (ModelState.IsValid)
+            {
+                pr.docState = DocState.sended;
+                pr.student = db.Student.Find(getUser().student.StudentID);
+                db.PresidentSchProp.Add(pr);
+                db.ForPresidentSchProp.Add(pr.table);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+           
+
             return View();
         }
 
@@ -48,6 +83,10 @@ namespace ScholarshipWebApplication.Controllers
                 {
                     ViewBag.isSended = true;
                 }
+            }
+            else
+            {
+                return RedirectToAction("BasicDoc", "Home");
             }
             return View();
         }
@@ -87,7 +126,12 @@ namespace ScholarshipWebApplication.Controllers
                 {
                     ViewBag.isSended = true;
                 }
-            }            
+            }
+            else
+            {
+                ViewBag.Message = "Przed wypełnianiem dokumentów, należy podać podstawowe dane osobowe.";
+                return RedirectToAction("BasicDoc", "Home");
+            }
             return View();
         }
 
@@ -104,6 +148,13 @@ namespace ScholarshipWebApplication.Controllers
                 return RedirectToAction("Index");
             }
             return View();
-        }      
+        }
+
+        [HttpPost]
+        public ActionResult AddMember(SocialMembersViewModel model)
+        {
+            model.props.familyMembersIncome.Add(model.income);
+            return PartialView("_AllMembers", model);            
+        }
     }
 }

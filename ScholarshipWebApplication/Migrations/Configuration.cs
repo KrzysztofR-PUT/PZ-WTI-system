@@ -5,15 +5,15 @@ namespace ScholarshipWebApplication.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ScholarshipWebApplication.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ScholarshipWebApplication.Models.Database.StudentContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "ScholarshipWebApplication.Models.ApplicationDbContext";
+            ContextKey = "ScholarshipWebApplication.Models.Database.StudentContext";
         }
 
-        protected override void Seed(ScholarshipWebApplication.Models.ApplicationDbContext context)
+        protected override void Seed(ScholarshipWebApplication.Models.Database.StudentContext context)
         {
             //  This method will be called after migrating to the latest version.
 

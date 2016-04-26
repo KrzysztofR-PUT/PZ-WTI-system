@@ -12,14 +12,16 @@ namespace ScholarshipWebApplication.Models.Database
     {
         [Key]
         public int DocID { get; set; }
-        [DisplayName("Stopień Niepełnosprawności")]
+        [DisplayName("Stopień niepełnosprawności")]
         public DisabilityLevel disabilityLevel { get; set; }
         [DisplayName("Ważne od")]
         public DateTime decisionStartDate { get; set; }
-        [DisplayName("do")]
+        [DisplayName("Do")]
         public DateTime decisionEndDate { get; set; }
-        [DisplayName("Czy decyzja jest stała")]
+        [DisplayName("Czy decyzja jest stała?")]
         public bool isDecisionPermanent { get; set; }
+        [DisplayName("Numer konta")]
+        public string bankAccountNmb { get; set; }
         public DocState docState { get; set; }
         public virtual Student student { get; set; }
     }
