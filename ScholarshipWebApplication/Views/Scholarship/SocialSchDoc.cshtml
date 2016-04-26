@@ -1,12 +1,12 @@
-﻿@model ScholarshipWebApplication.Models.Database.SocialScholarshipProps
+﻿@model ScholarshipWebApplication.Models.SocialMembersViewModel
 @using ScholarshipWebApplication.Models.Database
 @{
-    ViewBag.Title = "Social Scholarship Document";
+    ViewBag.Title = "Stypendium socjalne";
 }
 
-<h2>Social Scholarship Document</h2>
+<h2>Stypendium socjalne</h2>
 
-@using (Html.BeginForm())
+@using (Ajax.BeginForm("AddMember", "ScholarshipController", new AjaxOptions { UpdateTargetId = "_AllMembers"}))
 {
     if (ViewBag.isSended == true)
     {
@@ -17,57 +17,84 @@
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
             <div class="form-group">
-                @Html.LabelFor(model => model.kind, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.props.kind, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.kind, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.props.kind, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.incomeYear, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.props.incomeYear, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.incomeYear, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.props.incomeYear, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.netIncome, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.props.netIncome, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.netIncome, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.props.netIncome, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.lostIncome, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.props.lostIncome, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.lostIncome, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.props.lostIncome, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.gainedIncome, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.props.gainedIncome, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.gainedIncome, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.props.gainedIncome, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.incomePerPersonPerMonth, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.props.incomePerPersonPerMonth, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.incomePerPersonPerMonth, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.props.incomePerPersonPerMonth, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.alimonyCuts, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.props.alimonyCuts, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.alimonyCuts, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.props.alimonyCuts, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
             </div>
+
+            <input type="submit" value="Dodaj" class="btn btn-default" />
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>@Html.LabelFor(model => model.income.firstName)</th>
+                        <th>@Html.LabelFor(model => model.income.lastName)</th>
+                        <th>@Html.LabelFor(model => model.income.birthdayYear)</th>
+                        <th>@Html.LabelFor(model => model.income.relationship)</th>
+                        <th>@Html.LabelFor(model => model.income.taxedIncome)</th>
+                        <th>@Html.LabelFor(model => model.income.untaxedIncome)</th>
+                        <th>@Html.LabelFor(model => model.income.total)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @Html.Partial("_AllMembers", Model)
+                    <tr>
+                        <td>@Html.EditorFor(model => model.income.firstName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                        <th>@Html.EditorFor(model => model.income.lastName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</th>
+                        <td>@Html.EditorFor(model => model.income.birthdayYear, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                        <td>@Html.EditorFor(model => model.income.relationship, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                        <td>@Html.EditorFor(model => model.income.taxedIncome, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                        <td>@Html.EditorFor(model => model.income.untaxedIncome, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                        <td>@Html.EditorFor(model => model.income.total, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                    </tr>
+                </tbody>
+            </table>
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
+                    <input type="submit" value="Zatwierdź" class="btn btn-default" />
                 </div>
             </div>
         </div>
@@ -75,7 +102,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back", "Index", "Scholarship")
+    @Html.ActionLink("Powrót", "Index", "Scholarship")
 </div>
 
 @section Scripts {
