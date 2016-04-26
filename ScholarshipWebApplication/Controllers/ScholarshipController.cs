@@ -84,6 +84,10 @@ namespace ScholarshipWebApplication.Controllers
                     ViewBag.isSended = true;
                 }
             }
+            else
+            {
+                return RedirectToAction("BasicDoc", "Home");
+            }
             return View();
         }
 
@@ -122,7 +126,12 @@ namespace ScholarshipWebApplication.Controllers
                 {
                     ViewBag.isSended = true;
                 }
-            }            
+            }
+            else
+            {
+                ViewBag.Message = "Przed wypełnianiem dokumentów, należy podać podstawowe dane osobowe.";
+                return RedirectToAction("BasicDoc", "Home");
+            }
             return View();
         }
 
