@@ -48,7 +48,6 @@ namespace ScholarshipWebApplication.Controllers
         public ActionResult PresidentSchDoc(PresidentSchProp pr)
         {
             
-
             if (ModelState.IsValid)
             {
                 pr.docState = DocState.sended;

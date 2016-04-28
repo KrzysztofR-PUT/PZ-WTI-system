@@ -17,6 +17,5 @@ namespace ScholarshipWebApplication.Models.Database
         public DbSet<ForDisabledScholarshipProps> ForDisabledProperties { get; set; }
         public DbSet<PresidentSchProp> PresidentSchProp { get; set; }
         public DbSet<ForPresidentSchProp> ForPresidentSchProp { get; set; }
-        public DbSet<Rooms> Room { get; set; }
-    }
+>>>>>>> Temporary merge branch 2    }
 }

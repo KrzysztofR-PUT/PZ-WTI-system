@@ -10,13 +10,22 @@
 
 @using (Html.BeginForm())
 {
+    if (ViewBag.isSended == true)
+    {  
+        <label class="control-label">Dokument został już przesłany!</label>
+      
+    }
+    else
+    {
+
+
     @Html.AntiForgeryToken()
 
     <br />
     <br />
     <br />
     <br />
-    
+
 
     <div class="col-md-offset-2 col-md-10">
 
@@ -161,10 +170,22 @@
     <div class="row">
         <div class="checkbox col-md-offset-2 col-md-10">
             @Html.CheckBoxFor(model => model.statement_bankAccount)
-            <p>
-                Świadomy(a) odpowiedzialności karnej, cywilno-prawnej i dyscyplinarnej za podanie nieprawdziwych danych, oświadczam, że wszystkie dane zawarte w niniejszym wniosku i załączonych dokumentach są zgodne ze stanem faktycznym.<strong>Przyznaną kwotę stypendium proszę przelać na moje konto bankowe.</strong>
-            </p>
             @Html.ValidationMessageFor(model => model.statement_bankAccount, "", new { @class = "text-danger" })
+            <p>
+                Świadomy(a) odpowiedzialności karnej, cywilno-prawnej i dyscyplinarnej za podanie nieprawdziwych danych, oświadczam, że wszystkie dane zawarte w niniejszym wniosku i załączonych dokumentach są zgodne ze stanem faktycznym.<strong>Przyznaną kwotę stypendium proszę przelać na nastepujące konto bankowe:</strong>
+            </p>
+                      
+            <div class="row">
+                <div class="col-xs-2">
+                    <input type="text" name="part1" class="form-control" placeholder=".col-xs-2">
+                </div>
+                <div class="col-xs-2">
+                    <input type="text" name="part2" class="form-control" placeholder=".col-xs-2">
+                </div>
+                <div class="col-xs-2">
+                    <input type="text" name="part3" class="form-control" placeholder=".col-xs-2">
+                </div>
+            </div>
         </div>
     </div>
 
@@ -185,10 +206,11 @@
             <input type="submit" value="Zatwierdź" class="btn btn-default" />
         </div>
     </div>
-}
+
 
 <br />
-<br />
-<div>
+<br />}
+}
+<div class="row">
     @Html.ActionLink("Powrót", "Index", "Scholarship")
 </div>
