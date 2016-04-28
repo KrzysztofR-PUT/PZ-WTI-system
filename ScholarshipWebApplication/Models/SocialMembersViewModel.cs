@@ -10,5 +10,6 @@ namespace ScholarshipWebApplication.Models
     {
         public SocialScholarshipProps props { get; set; }
         public FamilyMembersIncome income { get; set; }
+        public IList<FamilyMembersIncome> incomes { get; set; }
     }
 }

@@ -31,6 +31,6 @@ namespace ScholarshipWebApplication.Models.Database
         public string bankAccountNmb { get; set; }
         public DocState docState { get; set; }
         public virtual Student student { get; set; }
-        public virtual ICollection<FamilyMembersIncome> familyMembersIncome { get; set; }
+        public virtual IList<FamilyMembersIncome> familyMembersIncome { get; set; }
     }
 }

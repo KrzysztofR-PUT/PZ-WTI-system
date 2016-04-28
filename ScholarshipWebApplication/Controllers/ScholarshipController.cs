@@ -4,6 +4,7 @@ using ScholarshipWebApplication.Models;
 using ScholarshipWebApplication.Models.Database;
 using System.Web.Mvc;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ScholarshipWebApplication.Controllers
 {
@@ -119,7 +120,7 @@ namespace ScholarshipWebApplication.Controllers
 
             if (user.student != null)
             {
-                int id = user.student.StudentID;                
+                int id = user.student.StudentID;
                 var props = from docs in db.SocialProperties where docs.student.StudentID == id select docs;
 
                 if (props.Any())
@@ -137,24 +138,28 @@ namespace ScholarshipWebApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SocialSchDoc( SocialScholarshipProps socialScholarshipProps)
+        public ActionResult SocialSchDoc(SocialMembersViewModel socialScholarshipProps)
         {
-            if (ModelState.IsValid)
+            if (socialScholarshipProps.income == null)
             {
-                socialScholarshipProps.docState = DocState.sended;
-                socialScholarshipProps.student = db.Student.Find(getUser().student.StudentID);
-                db.SocialProperties.Add(socialScholarshipProps);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    socialScholarshipProps.props.familyMembersIncome = socialScholarshipProps.incomes;
+                    socialScholarshipProps.props.docState = DocState.sended;
+                    socialScholarshipProps.props.student = db.Student.Find(getUser().student.StudentID);
+                    db.SocialProperties.Add(socialScholarshipProps.props);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View();
             }
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddMember(SocialMembersViewModel model)
-        {
-            model.props.familyMembersIncome.Add(model.income);
-            return PartialView("_AllMembers", model);            
+            else
+            {
+                if (socialScholarshipProps.incomes == null)
+                    socialScholarshipProps.incomes = new List<FamilyMembersIncome>();
+                socialScholarshipProps.incomes.Add(socialScholarshipProps.income);
+                return View(socialScholarshipProps);
+            }
         }
     }
 }
