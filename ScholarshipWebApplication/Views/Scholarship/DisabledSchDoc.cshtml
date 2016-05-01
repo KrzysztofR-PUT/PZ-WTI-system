@@ -1,16 +1,20 @@
 ﻿@model ScholarshipWebApplication.Models.Database.ForDisabledScholarshipProps
+@using ScholarshipWebApplication.Models.Helpers
 
 @{
     ViewBag.Title = "Wniosek o przyznanie stypednium specjalnego dla osób niepełnosprawnych";
 }
 
-
-
 @using (Html.BeginForm())
 {
     if (ViewBag.isSended == true)
     {
-        <label class="control-label">Dokument został już przesłany!</label>
+        @Html.Label("Dokument został już przesłany!", new { htmlAttributes = new { @class = "control -label" } })
+        <br />
+        <p>
+            @Html.LabelFor(model => model.docState, new { htmlAttributes = new { @class = "control-label" } })
+            @Html.Label(": " + Enumeration.getDescription(Model.docState), new { htmlAttributes = new { @class = "control-label" } })
+        </p>
     }
     else
     {
@@ -44,12 +48,9 @@
                 <tbody>
                     <tr>
                         <th scope="row">Orzeczenie jest ważne</th>
-
                     </tr>
                     <tr>
                         <td>
-
-
                             <div class="form-group">
                                 @Html.LabelFor(model => model.decisionStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -75,8 +76,6 @@
                 </tbody>
             </table>
         </div>
-
-
         
         <div class="form-horizontal">
             <div class="form-group">

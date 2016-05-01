@@ -1,36 +1,32 @@
 ﻿@model ScholarshipWebApplication.Models.Database.PresidentSchProp
-
-
+@using ScholarshipWebApplication.Models.Helpers
 @{
     ViewBag.Title = "Stypendium rektora";
 }
 
 <h2 class="col-md-4 col-md-offset-4">Stypendium rektora</h2>
 
-
 @using (Html.BeginForm())
 {
     if (ViewBag.isSended == true)
-    {  
-        <label class="control-label">Dokument został już przesłany!</label>
-      
+    {
+        @Html.Label("Dokument został już przesłany!", new { htmlAttributes = new { @class = "control-label" } })
+        <br />
+        <p>
+            @Html.LabelFor(model => model.docState, new { htmlAttributes = new { @class = "control-label" } })
+            @Html.Label(": " + Enumeration.getDescription(Model.docState), new { htmlAttributes = new { @class = "control-label" } })
+        </p>
     }
     else
     {
-
-
     @Html.AntiForgeryToken()
-
     <br />
     <br />
     <br />
     <br />
-
 
     <div class="col-md-offset-2 col-md-10">
-
         <table class="table table-bordered">
-
             <thead>
                 <tr>
                     <th><h3>#</h3></th>
@@ -40,14 +36,12 @@
             </thead>      
 
             <tbody>
-
                 <tr>
                     <th scope="row">1</th>
                     <td>Średnia ważona ocen uzyskanych w poprzednim roku studiów (dwa ostatnie semestry studiów), niemniejsza niż 4,0 pomnożona przez 10</td>
                     <td>@Html.EditorFor(model => model.table.average, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.table.average, "", new { @class = "text-danger" })</td>
                 </tr>
-
                 <tr>
                     <th scope="row">2</th>
                     <td>Aktywność w jednym kole naukowym, wskazanym przez studenta (0 – 3) pkt.</td>
@@ -177,13 +171,13 @@
                       
             <div class="row">
                 <div class="col-xs-2">
-                    <input type="text" name="part1" class="form-control" placeholder=".col-xs-2">
+                    <input type="text" name="part1" class="form-control">
                 </div>
                 <div class="col-xs-2">
-                    <input type="text" name="part2" class="form-control" placeholder=".col-xs-2">
+                    <input type="text" name="part2" class="form-control">
                 </div>
                 <div class="col-xs-2">
-                    <input type="text" name="part3" class="form-control" placeholder=".col-xs-2">
+                    <input type="text" name="part3" class="form-control">
                 </div>
             </div>
         </div>
@@ -207,9 +201,9 @@
         </div>
     </div>
 
-
 <br />
-<br />}
+<br />
+    }
 }
 <div class="row">
     @Html.ActionLink("Powrót", "Index", "Scholarship")

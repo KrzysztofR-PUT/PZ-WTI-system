@@ -39,6 +39,7 @@ namespace ScholarshipWebApplication.Controllers
                 if (props.Any())
                 {
                     ViewBag.isSended = true;
+                    return View(props.First());
                 }
             }
             return View();
@@ -84,6 +85,7 @@ namespace ScholarshipWebApplication.Controllers
                 if (props.Any())
                 {
                     ViewBag.isSended = true;
+                    return View(props.First());
                 }
             }
             else
@@ -127,11 +129,13 @@ namespace ScholarshipWebApplication.Controllers
                 if (props.Any())
                 {
                     ViewBag.isSended = true;
+                    SocialMembersViewModel model = new SocialMembersViewModel();
+                    model.props = props.First();
+                    return View(model);
                 }
             }
             else
             {
-                ViewBag.Message = "Przed wypełnianiem dokumentów, należy podać podstawowe dane osobowe.";
                 return RedirectToAction("BasicDoc", "Home");
             }
             return View();

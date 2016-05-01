@@ -22,6 +22,7 @@ namespace ScholarshipWebApplication.Models.Database
         public bool isDecisionPermanent { get; set; }
         [DisplayName("Numer konta")]
         public string bankAccountNmb { get; set; }
+        [DisplayName("Status dokumentu")]
         public DocState docState { get; set; }
         public virtual Student student { get; set; }
     }

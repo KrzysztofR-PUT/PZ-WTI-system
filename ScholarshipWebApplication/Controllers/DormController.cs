@@ -16,13 +16,11 @@ namespace ScholarshipWebApplication.Controllers
         private StudentContext db = new StudentContext();
         private List<Rooms> ListR = new List<Rooms>();
         
-
         public ActionResult Index()
         {
             return View();
         }
-
-
+        
         public ActionResult AccomodationDoc()
         {
             //Create db context object here 
@@ -65,6 +63,9 @@ namespace ScholarshipWebApplication.Controllers
                 if (props.Any())
                 {
                     ViewBag.isSended = true;
+                    ViewModelToDorm viewmodel = new ViewModelToDorm();
+                    viewmodel.DormDocProps = props.First();
+                    return View(viewmodel);
                 }
             }
             else
@@ -74,11 +75,7 @@ namespace ScholarshipWebApplication.Controllers
             }
             return View(model);
         }
-
-
-       
-
-      
+        
         [ActionName("CallChangefun")]
         public ActionResult CallChangefun(int? value , ViewModelToDorm model)
         {
@@ -87,14 +84,11 @@ namespace ScholarshipWebApplication.Controllers
             model.Rooms = new Rooms();
             model.DormDocProps = new DormDocumentProps();
 
-
             IEnumerable<SelectListItem> x = db.Room.Where(c => c.isAvailable == 1).Select(c => new SelectListItem
             {
-
                 Value = c.RoomID.ToString(),
                 Text = c.RoomID.ToString(),
                 Selected = c.RoomID.Equals(i)
-
             });
 
             ViewBag.RoomID = x;
@@ -108,10 +102,6 @@ namespace ScholarshipWebApplication.Controllers
             model.Rooms.currentLodgersNumber = ListR.ElementAt(0).currentLodgersNumber;
             model.Rooms.floorNumber = ListR.ElementAt(0).floorNumber;
             model.Rooms.isAvailable = ListR.ElementAt(0).isAvailable;
-
-           
-           
-           
 
             return View("AccomodationDoc",model);
         }

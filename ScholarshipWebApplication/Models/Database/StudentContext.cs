@@ -1,10 +1,18 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel;
+using System.Data.Entity;
 
 namespace ScholarshipWebApplication.Models.Database
 {
     public enum DocState
     {
-        returned, sended, accepted, rejected
+        [Description("Zwrócony")]
+        returned,
+        [Description("Wysłany")]
+        sended,
+        [Description("Zaakceptowany")]
+        accepted,
+        [Description("Odrzucony")]
+        rejected
     }
     public class StudentContext : DbContext
     {

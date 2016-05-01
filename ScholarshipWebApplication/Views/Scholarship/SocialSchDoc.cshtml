@@ -1,4 +1,5 @@
 ﻿@model ScholarshipWebApplication.Models.SocialMembersViewModel
+@using ScholarshipWebApplication.Models.Helpers
 @{
     ViewBag.Title = "Stypendium socjalne";
 }
@@ -7,7 +8,12 @@
 
 @if (ViewBag.isSended == true)
 {
-    <label class="control-label">Dokument został już przesłany!</label>
+    @Html.Label("Dokument został już przesłany!", new { htmlAttributes = new { @class = "control-label" } })
+    <br/>
+    <p>
+        @Html.LabelFor(model => model.props.docState, new { htmlAttributes = new { @class = "control-label" } })
+        @Html.Label(": "+ Enumeration.getDescription(Model.props.docState), new { htmlAttributes = new { @class = "control-label" } })
+    </p>
 }
 else
 {

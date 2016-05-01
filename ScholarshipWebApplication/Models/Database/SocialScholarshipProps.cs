@@ -17,9 +17,9 @@ namespace ScholarshipWebApplication.Models.Database
         [DisplayName("Rodzaj")]
         public SocialScholarshipKind kind { get; set; }
         [DisplayName("Przychód roczny")]
-        public string incomeYear { get; set; } //rok kalendarzowy dochodow
+        public string incomeYear { get; set; }
         [DisplayName("Przychód Netto")]
-        public float netIncome { get; set; } //dochód netto
+        public float netIncome { get; set; }
         [DisplayName("Dochód utracony")]
         public float lostIncome { get; set; }
         [DisplayName("Dochód uzyskany")]
@@ -27,8 +27,9 @@ namespace ScholarshipWebApplication.Models.Database
         [DisplayName("Dochód rodzinny netto na osobę")]
         public float incomePerPersonPerMonth { get; set; }
         [DisplayName("Odliczenie z tytułu alimentów")]
-        public float alimonyCuts { get; set; } //odliczenia z tytułu płacenia alimentów
+        public float alimonyCuts { get; set; }
         public string bankAccountNmb { get; set; }
+        [DisplayName("Status dokumentu")]
         public DocState docState { get; set; }
         public virtual Student student { get; set; }
         public virtual IList<FamilyMembersIncome> familyMembersIncome { get; set; }

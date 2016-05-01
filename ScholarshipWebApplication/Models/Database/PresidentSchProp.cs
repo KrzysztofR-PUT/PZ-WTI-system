@@ -15,6 +15,7 @@ namespace ScholarshipWebApplication.Models.Database
         public virtual Student student { get; set; }
 
         public virtual ForPresidentSchProp table { get; set; }
+        [DisplayName("Status dokumentu")]
         public DocState docState { get; set; }
 
         [RegularExpression("True", ErrorMessage = "Musisz zaakceptować to pole")]

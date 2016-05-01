@@ -27,10 +27,10 @@ namespace ScholarshipWebApplication.Models.Database
         public bool isFullFamily { get; set; }
         [Required(ErrorMessage = "Pole jest niezbędne")]
         [DisplayName("Rok studiów")]
-        public string CurrentAcademicYear { get; set; }
-       
+        public string CurrentAcademicYear { get; set; }       
         [DisplayName("Numer konta")]
         public string bankAccountNmb { get; set; }
+        [DisplayName("Status dokumentu")]
         public DocState docState { get; set; }
         public virtual Student student { get; set; }
         public virtual Rooms Room { get; set; }
