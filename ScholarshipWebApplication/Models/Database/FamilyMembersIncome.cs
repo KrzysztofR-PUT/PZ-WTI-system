@@ -10,7 +10,7 @@ namespace ScholarshipWebApplication.Models.Database
     public class FamilyMembersIncome
     {
         [Key]
-        public string IncomeID { get; set; }
+        public int IncomeID { get; set; }
         [Required(ErrorMessage = "Imię jest wymagane")]
         [DisplayName("Imię")]
         public string firstName { get; set; }

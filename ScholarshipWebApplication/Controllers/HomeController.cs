@@ -34,7 +34,6 @@ namespace ScholarshipWebApplication.Controllers
                 var currentUser = manager.FindById(User.Identity.GetUserId());
                 currentUser.student = tuple.Student;
                 manager.UpdateAsync(currentUser);
-                db.Address.Add(tuple.Adres);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

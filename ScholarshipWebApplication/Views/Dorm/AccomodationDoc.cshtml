@@ -1,4 +1,4 @@
-﻿@model ScholarshipWebApplication.Models.Database.DormDocumentProps
+﻿@model ScholarshipWebApplication.Models.ViewModelToDorm
 
 @{
     ViewBag.Title = "Rezerwacja pokoju";
@@ -15,69 +15,114 @@
     }
     else
     {
+
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
-                @Html.LabelFor(model => model.DistanceFromHome, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.DormDocProps.DistanceFromHome, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.DistanceFromHome, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.DistanceFromHome, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.DormDocProps.DistanceFromHome, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DormDocProps.DistanceFromHome, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.TransportDifficulties, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.DormDocProps.TransportDifficulties, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.TransportDifficulties, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TransportDifficulties, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.DormDocProps.TransportDifficulties, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DormDocProps.TransportDifficulties, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.FamilyCount, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.DormDocProps.FamilyCount, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.FamilyCount, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FamilyCount, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.DormDocProps.FamilyCount, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DormDocProps.FamilyCount, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.IncomePerPerson, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.DormDocProps.IncomePerPerson, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.IncomePerPerson, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.IncomePerPerson, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.DormDocProps.IncomePerPerson, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DormDocProps.IncomePerPerson, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.IsDisabled, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.DormDocProps.IsDisabled, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     <div class="checkbox">
-                        @Html.EditorFor(model => model.IsDisabled)
-                        @Html.ValidationMessageFor(model => model.IsDisabled, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.DormDocProps.IsDisabled)
+                        @Html.ValidationMessageFor(model => model.DormDocProps.IsDisabled, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.isFullFamily, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.DormDocProps.isFullFamily, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     <div class="checkbox">
-                        @Html.EditorFor(model => model.isFullFamily)
-                        @Html.ValidationMessageFor(model => model.isFullFamily, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.DormDocProps.isFullFamily)
+                        @Html.ValidationMessageFor(model => model.DormDocProps.isFullFamily, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CurrentAcademicYear, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.DormDocProps.CurrentAcademicYear, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.CurrentAcademicYear, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CurrentAcademicYear, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.DormDocProps.CurrentAcademicYear, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DormDocProps.CurrentAcademicYear, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            <br />
+
+              <script>
+           function CallChangefunc(val)
+            {
+               window.location.href = "/Dorm/CallChangefun?value=" + val;
+            }
+            </script>
+
+                <h2 class="row"> Wybierz pokój</h2>
+            <div class="form-inline form-group">
+                <p class="control-label col-md-2">Nr Pokoju: </p>
+                @Html.DropDownList("RoomID", ViewBag.RoomID as SelectList, htmlAttributes: new { @class = "form-control", @style = "width:70px !important", onchange = "CallChangefunc(this.value);" })
+                 </div>
+           
+          
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>                      
+                        <th>Nr Pokoju</th>
+                        <th>Ilu osobowy pokój</th>
+                        <th>Miejsca Zajęte</th>
+                        <th>Piętro</th>                                           
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @Html.HiddenFor(model => model.Rooms.RoomID)
+                        @Html.HiddenFor(model => model.Rooms.roomSpace)
+                        @Html.HiddenFor(model => model.Rooms.currentLodgersNumber)
+                        @Html.HiddenFor(model => model.Rooms.floorNumber)
+                        @Html.HiddenFor(model => model.Rooms.isAvailable)
+                        <td>@Html.DisplayFor(model => model.Rooms.RoomID, new { htmlAttributes = new { @class = "col-md-10 control-label " } })</td>
+                        <td>@Html.DisplayFor(model => model.Rooms.roomSpace, new { htmlAttributes = new { @class = "col-md-10 control-label " } })</td>
+                        <td>@Html.DisplayFor(model => model.Rooms.currentLodgersNumber, new { htmlAttributes = new { @class = "col-md-10 control-label " } })</td>
+                        <td>@Html.DisplayFor(model => model.Rooms.floorNumber, new { htmlAttributes = new { @class = "col-md-10 control-label " } })</td>
+           
+                    </tr>
+                </tbody>
+            </table>
+
+
 
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
