@@ -20,6 +20,8 @@ else
         }))
         {
             @Html.AntiForgeryToken()
+            <h3>Dochody poszczególnych członków rodziny</h3>
+            <br />
             <div class="form-horizontal">
                 <table class="table table-hover">
                     <thead>
@@ -96,6 +98,8 @@ else
                     </tbody>
                 </table>
 
+                <h3>Informacje o przyznawanym stypendium</h3>
+                <br />
                 <div class="form-group">
                     @Html.LabelFor(model => model.props.kind, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">

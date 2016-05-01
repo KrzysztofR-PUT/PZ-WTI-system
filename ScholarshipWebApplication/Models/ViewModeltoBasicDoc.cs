@@ -10,6 +10,7 @@ namespace ScholarshipWebApplication.Models
     {
         public Address Adres { get; set; }
         public Student Student { get; set; }
-
+        public IList<Studies> Studies { get; set; }
+        public Studies Course { get; set; }
     }
 }

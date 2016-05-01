@@ -26,7 +26,6 @@ namespace ScholarshipWebApplication.Models.Database
         [DisplayName("Forma Studiów")]
         public Form Form { get; set; }
         public virtual Course course { get; set; }
-        public virtual Student student { get; set; }
     }
 }
 

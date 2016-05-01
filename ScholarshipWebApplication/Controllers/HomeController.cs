@@ -3,6 +3,7 @@ using ScholarshipWebApplication.Models.Database;
 using ScholarshipWebApplication.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 
 namespace ScholarshipWebApplication.Controllers
 {
@@ -27,18 +28,29 @@ namespace ScholarshipWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult BasicDoc(ViewModeltoBasicDoc tuple)
         {
-            tuple.Student.address = tuple.Adres;
-            if (ModelState.IsValid)
+            if (tuple.Course == null)
             {
-                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-                var currentUser = manager.FindById(User.Identity.GetUserId());
-                currentUser.student = tuple.Student;
-                manager.UpdateAsync(currentUser);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                tuple.Student.address = tuple.Adres;
+                tuple.Student.studies = tuple.Studies;
+                if (ModelState.IsValid)
+                {
+                    var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                    var currentUser = manager.FindById(User.Identity.GetUserId());
+                    currentUser.student = tuple.Student;
+                    manager.UpdateAsync(currentUser);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            return View(tuple);
+                return View(tuple);
+            }
+            else
+            {
+                if (tuple.Studies == null)
+                    tuple.Studies = new List<Studies>();
+                tuple.Studies.Add(tuple.Course);
+                return View(tuple);
+            }
         }
 
     }
