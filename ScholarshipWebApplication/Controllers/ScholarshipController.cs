@@ -5,6 +5,8 @@ using ScholarshipWebApplication.Models.Database;
 using System.Web.Mvc;
 using System.Linq;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
+using System.Diagnostics;
 
 namespace ScholarshipWebApplication.Controllers
 {

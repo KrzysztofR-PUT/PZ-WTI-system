@@ -1,79 +1,79 @@
 ﻿@model ScholarshipWebApplication.Models.SocialMembersViewModel
-@using ScholarshipWebApplication.Models.Database
 @{
     ViewBag.Title = "Stypendium socjalne";
 }
 
 <h2>Stypendium socjalne</h2>
-<div id="container">
-    @using (Ajax.BeginForm("SocialSchDoc", "Scholarship", new AjaxOptions
-    {
-        HttpMethod = "POST",
-        InsertionMode = InsertionMode.Replace,
-        UpdateTargetId = "container"
-    }))
-    {
-        @Html.AntiForgeryToken()
-        <div class="form-horizontal">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>@Html.LabelFor(model => model.income.firstName)</th>
-                        <th>@Html.LabelFor(model => model.income.lastName)</th>
-                        <th>@Html.LabelFor(model => model.income.birthdayYear)</th>
-                        <th>@Html.LabelFor(model => model.income.relationship)</th>
-                        <th>@Html.LabelFor(model => model.income.taxedIncome)</th>
-                        <th>@Html.LabelFor(model => model.income.untaxedIncome)</th>
-                        <th>@Html.LabelFor(model => model.income.total)</th>
-                        <th>Akcja</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>@Html.EditorFor(model => model.income.firstName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
-                        <th>@Html.EditorFor(model => model.income.lastName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</th>
-                        <td>@Html.EditorFor(model => model.income.birthdayYear, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
-                        <td>@Html.EditorFor(model => model.income.relationship, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
-                        <td>@Html.EditorFor(model => model.income.taxedIncome, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
-                        <td>@Html.EditorFor(model => model.income.untaxedIncome, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
-                        <td>@Html.EditorFor(model => model.income.total, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
-                        <td><input type="submit" value="Dodaj" class="btn btn-default" /></td>
-                    </tr>
-                    @if (Model != null && Model.incomes != null)
-                    {
-                        for (int i = 0; i < Model.incomes.Count; i++)
-                        {
-                            @Html.HiddenFor(model => Model.incomes[i].IncomeID)
-                            @Html.HiddenFor(model => Model.incomes[i].firstName)
-                            @Html.HiddenFor(model => Model.incomes[i].lastName)
-                            @Html.HiddenFor(model => Model.incomes[i].birthdayYear)
-                            @Html.HiddenFor(model => Model.incomes[i].relationship)
-                            @Html.HiddenFor(model => Model.incomes[i].taxedIncome)
-                            @Html.HiddenFor(model => Model.incomes[i].untaxedIncome)
-                            @Html.HiddenFor(model => Model.incomes[i].total)
-                        }
-                    }
-                </tbody>
-            </table>
-        </div>
-    }
 
-    @using (Html.BeginForm())
-    {
-        if (ViewBag.isSended == true)
+@if (ViewBag.isSended == true)
+{
+    <label class="control-label">Dokument został już przesłany!</label>
+}
+else
+{
+    <div id="container">
+        @using (Ajax.BeginForm("SocialSchDoc", "Scholarship", new AjaxOptions
         {
-            <label class="control-label">Dokument został już przesłany!</label>
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "container"
+        }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-horizontal">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>@Html.LabelFor(model => model.income.firstName)</th>
+                            <th>@Html.LabelFor(model => model.income.lastName)</th>
+                            <th>@Html.LabelFor(model => model.income.birthdayYear)</th>
+                            <th>@Html.LabelFor(model => model.income.relationship)</th>
+                            <th>@Html.LabelFor(model => model.income.taxedIncome)</th>
+                            <th>@Html.LabelFor(model => model.income.untaxedIncome)</th>
+                            <th>@Html.LabelFor(model => model.income.total)</th>
+                            <th>Akcja</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@Html.EditorFor(model => model.income.firstName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                            <th>@Html.EditorFor(model => model.income.lastName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</th>
+                            <td>@Html.EditorFor(model => model.income.birthdayYear, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                            <td>@Html.EditorFor(model => model.income.relationship, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                            <td>@Html.EditorFor(model => model.income.taxedIncome, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                            <td>@Html.EditorFor(model => model.income.untaxedIncome, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                            <td>@Html.EditorFor(model => model.income.total, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                            <td><input type="submit" value="Dodaj" class="btn btn-default" /></td>
+                        </tr>
+                        @if (Model != null && Model.incomes != null)
+                        {
+                            for (int i = 0; i < Model.incomes.Count; i++)
+                            {
+                                @Html.HiddenFor(model => Model.incomes[i].IncomeID)
+                                @Html.HiddenFor(model => Model.incomes[i].firstName)
+                                @Html.HiddenFor(model => Model.incomes[i].lastName)
+                                @Html.HiddenFor(model => Model.incomes[i].birthdayYear)
+                                @Html.HiddenFor(model => Model.incomes[i].relationship)
+                                @Html.HiddenFor(model => Model.incomes[i].taxedIncome)
+                                @Html.HiddenFor(model => Model.incomes[i].untaxedIncome)
+                                @Html.HiddenFor(model => Model.incomes[i].total)
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
         }
-        else
-        {
+
+        @using (Html.BeginForm())
+        {        
             @Html.AntiForgeryToken()
             <div class="form-horizontal">
                 <table class="table table-hover">
                     <tbody>
                         @if (Model != null && Model.incomes != null)
-                    {
-                        for (int i = 0; i < Model.incomes.Count; i++)
                         {
+                            for (int i = 0; i < Model.incomes.Count; i++)
+                            {
                                 <tr>
                                     <td>@Html.DisplayFor(model => Model.incomes[i].firstName)</td>
                                     <td>@Html.DisplayFor(model => Model.incomes[i].lastName)</td>
@@ -150,10 +150,10 @@
                         <input type="submit" value="Zatwierdź" class="btn btn-default" />
                     </div>
                 </div>
-            </div>
+            </div>        
         }
-    }
-</div>
+    </div>
+}
 <div>
     @Html.ActionLink("Powrót", "Index", "Scholarship")
 </div>
