@@ -8,17 +8,28 @@
 
 @using (Html.BeginForm())
 {
-    if (ViewBag.isSended == true)
+
+
+    if (ViewBag.dateCheck == true)
     {
+        @Html.Label("Minął termin przesłania dokumentu lub nie rozpoczęto jeszcze odbierania dokumentów dla stypendium rektorskiego", new { htmlAttributes = new { @class = "control -label" } })
+       
+    }
+    else
+    {
+
+
+        if (ViewBag.isSended == true)
+        {
         @Html.Label("Dokument został już przesłany!", new { htmlAttributes = new { @class = "control-label" } })
         <br />
         <p>
             @Html.LabelFor(model => model.docState, new { htmlAttributes = new { @class = "control-label" } })
             @Html.Label(": " + Enumeration.getDescription(Model.docState), new { htmlAttributes = new { @class = "control-label" } })
         </p>
-    }
-    else
-    {
+        }
+        else
+        {
     @Html.AntiForgeryToken()
     <br />
     <br />
@@ -203,6 +214,7 @@
 
 <br />
 <br />
+        }
     }
 }
 <div class="row">

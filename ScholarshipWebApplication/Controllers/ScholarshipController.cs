@@ -7,6 +7,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
+using System;
 
 namespace ScholarshipWebApplication.Controllers
 {
@@ -36,6 +37,29 @@ namespace ScholarshipWebApplication.Controllers
        [Authorize]
         public ActionResult PresidentSchDoc()
         {
+
+            var query2 = from dates in db.Dates where dates.what == Document.rektorski where dates.importantdate == true select dates;
+
+            List<Dates> ListDates = query2.ToList();
+            DateTime dt3 = DateTime.Now;
+            DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
+            DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
+            ViewBag.dateCheck = false;
+
+            if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+            {
+
+                ViewBag.dateCheck = false;
+
+            }
+            else
+            {
+                ViewBag.dateCheck = true;
+
+
+            }
+
+
             PresidentSchProp pr = new PresidentSchProp();
 
             ApplicationUser user = getUser();
@@ -61,11 +85,12 @@ namespace ScholarshipWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult PresidentSchDoc(PresidentSchProp pr, string part1, string part2, string part3,string part4)
         {
-            string x = part1 + part2 + part3 + part4;
-
-            pr.bankAccountNmb = x;
+           
             if (ModelState.IsValid)
             {
+                string x = part1 + part2 + part3 + part4;
+
+                pr.bankAccountNmb = x;
                 pr.docState = DocState.sended;
                 pr.student = db.Student.Find(getUser().student.StudentID);                
                 db.PresidentSchProp.Add(pr);
@@ -95,6 +120,28 @@ namespace ScholarshipWebApplication.Controllers
         [Authorize]
         public ActionResult DisabledSchDoc()
         {
+
+            var query2 = from dates in db.Dates where dates.what == Document.niepelnosprawny where dates.importantdate == true select dates;
+
+            List<Dates> ListDates = query2.ToList();
+            DateTime dt3 = DateTime.Now;
+            DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
+            DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
+            ViewBag.dateCheck = false;
+
+            if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+            {
+
+                ViewBag.dateCheck = false;
+
+            }
+            else
+            {
+                ViewBag.dateCheck = true;
+
+
+            }
+
             ApplicationUser user = getUser();
             ViewBag.isSended = false;
 
@@ -121,9 +168,10 @@ namespace ScholarshipWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DisabledSchDoc(ForDisabledScholarshipProps forDisabledProperties, string part1, string part2, string part3, string part4)
         {
-            forDisabledProperties.bankAccountNmb = part1 + part2 + part3 + part4;
             if (ModelState.IsValid)
             {
+                forDisabledProperties.bankAccountNmb = part1 + part2 + part3 + part4;
+
                 forDisabledProperties.docState = DocState.sended;
                 forDisabledProperties.student = db.Student.Find(getUser().student.StudentID);
                 db.ForDisabledProperties.Add(forDisabledProperties);
@@ -150,6 +198,29 @@ namespace ScholarshipWebApplication.Controllers
         [Authorize]
         public ActionResult SocialSchDoc()
         {
+
+            var query2 = from dates in db.Dates where dates.what == Document.socjalny where dates.importantdate == true select dates;
+
+            List<Dates> ListDates = query2.ToList();
+            DateTime dt3 = DateTime.Now;
+            DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
+            DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
+            ViewBag.dateCheck = false;
+
+            if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+            {
+
+                ViewBag.dateCheck = false;
+
+            }
+            else
+            {
+                ViewBag.dateCheck = true;
+
+
+            }
+
+
             ApplicationUser user = getUser();
             ViewBag.isSended = false;
 
@@ -178,11 +249,11 @@ namespace ScholarshipWebApplication.Controllers
         public ActionResult SocialSchDoc(SocialMembersViewModel socialScholarshipProps, string part1, string part2, string part3, string part4)
         {
 
-            socialScholarshipProps.props.bankAccountNmb = part1 + part2 + part3 + part4;
             if (socialScholarshipProps.income == null)
             {
                 if (ModelState.IsValid)
                 {
+                    socialScholarshipProps.props.bankAccountNmb = part1 + part2 + part3 + part4;
                     socialScholarshipProps.props.familyMembersIncome = socialScholarshipProps.incomes;
                     socialScholarshipProps.props.docState = DocState.sended;
                     socialScholarshipProps.props.student = db.Student.Find(getUser().student.StudentID);

@@ -28,6 +28,7 @@ namespace ScholarshipWebApplication.Models.Database
         public float incomePerPersonPerMonth { get; set; }
         [DisplayName("Odliczenie z tytułu alimentów")]
         public float alimonyCuts { get; set; }
+        [DisplayName("Nr konta bankowego")]
         public string bankAccountNmb { get; set; }
         [DisplayName("Status dokumentu")]
         public DocState docState { get; set; }
