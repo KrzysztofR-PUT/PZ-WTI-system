@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "News";
+
+    var grid = new WebGrid(Model, canPage: true, rowsPerPage: 4);
+}
+
+<h1>Ogłoszenia</h1>
+<br />
+<br />
+@grid.GetHtml(tableStyle: "webgrid-table",
+        headerStyle: "webgrid-header",
+        footerStyle: "webgrid-footer",
+        alternatingRowStyle: "webgrid-alternating-row",
+        selectedRowStyle: "webgrid-selected-row",
+        rowStyle: "webgrid-row-style",
+        mode: WebGridPagerModes.All,
+        columns : grid.Columns(
+                        grid.Column("Title", "Tytuł"),
+                        grid.Column("Content", "Wiadomość"),
+                        grid.Column("Author", "Autor"))
+             )
+
+<style type="text/css">
+    .webgrid-table {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: 1.2em;
+        width: 100%;
+        display: table;
+        border-collapse: separate;
+        border: solid 0px #001f33;
+        background-color: white;
+    }
+
+        .webgrid-table td, th {
+            border: 0px solid #001f33;
+            padding: 22px 7px 20px;
+        }
+
+    .webgrid-header {
+        background-color: #d9d9d9;
+        color: #FFFFFF;
+        padding-bottom: 4px;
+        padding-top: 5px;
+        text-align: left;
+    }
+
+    .webgrid-footer {
+    }
+
+    .webgrid-row-style {
+        padding: 3px 7px 2px;
+    }
+
+    .webgrid-alternating-row {
+        background-color: #e6f0ff;
+        padding: 3px 7px 2px;
+    }
+</style>

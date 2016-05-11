@@ -1,9 +1,11 @@
 ﻿using System.Web.Mvc;
+using System.Linq;
 using ScholarshipWebApplication.Models.Database;
 using ScholarshipWebApplication.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace ScholarshipWebApplication.Controllers
 {
@@ -23,6 +25,15 @@ namespace ScholarshipWebApplication.Controllers
             return View(model);
 
         }
+
+        [Authorize]
+        public ActionResult News()
+        {
+            var newsList = db.News.ToList();
+                
+            return View(newsList);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
