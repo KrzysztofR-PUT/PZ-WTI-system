@@ -26,5 +26,7 @@ namespace ScholarshipWebApplication.Models.Database
         public DbSet<Rooms> Room { get; set; }
         public DbSet<PresidentSchProp> PresidentSchProp { get; set; }
         public DbSet<ForPresidentSchProp> ForPresidentSchProp { get; set; }
+        public DbSet<Dates> Dates { get; set; }
+
     }
 }

@@ -28,7 +28,7 @@ namespace ScholarshipWebApplication.Models.Database
         [Required(ErrorMessage = "Pole jest niezbędne")]
         [DisplayName("Rok studiów")]
         public string CurrentAcademicYear { get; set; }       
-        [DisplayName("Numer konta")]
+        [DisplayName("Numer konta do zwrotu kaucji")]
         public string bankAccountNmb { get; set; }
         [DisplayName("Status dokumentu")]
         public DocState docState { get; set; }
