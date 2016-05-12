@@ -1,4 +1,8 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@{ 
+    bool isStudent = User.IsInRole("Student");
+}
+
+@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -9,7 +13,10 @@
         <li>
             @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-        <li>@Html.ActionLink("Ogłoszenia", "News", "Home")</li>
+        @if (isStudent)
+        {
+            <li>@Html.ActionLink("Ogłoszenia", "News", "Home")</li>
+        }
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a></li>
     </ul>
     }

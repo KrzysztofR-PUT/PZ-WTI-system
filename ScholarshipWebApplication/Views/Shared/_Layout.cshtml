@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    var isStudent = User.IsInRole("Student");
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,19 +24,22 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li class="dropdown">
-                        <a href="/Scholarship/Index">eStypendium</a>
-                        <ul class="dropdown-menu">
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Stypednium rektora", "PresidentSch", "Scholarship")</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Stypednium socjalne", "SocialSch", "Scholarship")</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Stypednium dla niepełnosprawnych", "DisabledSch", "Scholarship")</li>
-                        </ul>
-                    </li>
-                    <li>@Html.ActionLink("eAkademik", "Index", "Dorm")</li>
+                    @if (isStudent)
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>                    
+                        <li class="dropdown">
+                            <a href="/Scholarship/Index">eStypendium</a>
+                            <ul class="dropdown-menu">
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Stypednium rektora", "PresidentSch", "Scholarship")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Stypednium socjalne", "SocialSch", "Scholarship")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Stypednium dla niepełnosprawnych", "DisabledSch", "Scholarship")</li>
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("eAkademik", "Index", "Dorm")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
