@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System;
+using System.Web.Helpers;
 
 namespace ScholarshipWebApplication.Controllers
 {
@@ -18,7 +19,16 @@ namespace ScholarshipWebApplication.Controllers
         
         public ActionResult Index()
         {
-            return View();
+            Dates model = new Dates();
+
+
+            var query = from dates in db.Dates where dates.what == 0 select dates;
+
+            model.ListDates = query.ToList();
+
+           
+
+            return View(model);
         }
         
         [Authorize]
