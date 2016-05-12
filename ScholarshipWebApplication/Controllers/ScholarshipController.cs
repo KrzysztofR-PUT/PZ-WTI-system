@@ -24,9 +24,11 @@ namespace ScholarshipWebApplication.Controllers
             return View();
         }
 
-        [Authorize]
+       [Authorize]
         public ActionResult PresidentSchDoc()
         {
+            PresidentSchProp pr = new PresidentSchProp();
+
             ApplicationUser user = getUser();
             ViewBag.isSended = false;
 
@@ -42,19 +44,20 @@ namespace ScholarshipWebApplication.Controllers
                     return View(props.First());
                 }
             }
-            return View();
+            return View(pr);
 
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult PresidentSchDoc(PresidentSchProp pr)
+        public ActionResult PresidentSchDoc(PresidentSchProp pr, string part1, string part2, string part3,string part4)
         {
+            string x = part1 + part2 + part3 + part4;
             
             if (ModelState.IsValid)
             {
                 pr.docState = DocState.sended;
-                pr.student = db.Student.Find(getUser().student.StudentID);
+                pr.student = db.Student.Find(getUser().student.StudentID);                
                 db.PresidentSchProp.Add(pr);
                 db.ForPresidentSchProp.Add(pr.table);
                 db.SaveChanges();

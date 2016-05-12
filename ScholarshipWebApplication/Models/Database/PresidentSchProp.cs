@@ -18,6 +18,9 @@ namespace ScholarshipWebApplication.Models.Database
         [DisplayName("Status dokumentu")]
         public DocState docState { get; set; }
 
+        [DisplayName("Numer konta")]
+        public string bankAccountNmb { get; set; }
+
         [RegularExpression("True", ErrorMessage = "Musisz zaakceptować to pole")]
         public bool statement_statute { get; set; }
 

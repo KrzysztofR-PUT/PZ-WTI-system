@@ -21,6 +21,7 @@ namespace ScholarshipWebApplication.Controllers
             return View();
         }
         
+        [Authorize]
         public ActionResult AccomodationDoc()
         {
             //Create db context object here 
@@ -108,10 +109,11 @@ namespace ScholarshipWebApplication.Controllers
 
         [HttpPost]
         [ActionName("CallChangefun")]
-        public ActionResult CallChangefun( ViewModelToDorm model)
+        public ActionResult CallChangefun( ViewModelToDorm model, string part1, string part2, string part3, string part4)
         {
             if (ModelState.IsValid)
             {
+                model.DormDocProps.bankAccountNmb = part1 + part2 + part3 + part4;
 
                 model.Rooms.currentLodgersNumber += 1;
                 if (model.Rooms.roomSpace > model.Rooms.currentLodgersNumber)
@@ -143,12 +145,14 @@ namespace ScholarshipWebApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AccomodationDoc(string RoomID, ViewModelToDorm model )
-        {                      
+        public ActionResult AccomodationDoc(string RoomID, ViewModelToDorm model, string part1, string part2, string part3, string part4)
+        {
 
+            
             if (ModelState.IsValid)
             {
-               
+                model.DormDocProps.bankAccountNmb = part1 + part2 + part3 + part4;
+
                 model.Rooms.currentLodgersNumber += 1;
                 if (model.Rooms.roomSpace> model.Rooms.currentLodgersNumber)
                 {
