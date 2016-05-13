@@ -14,20 +14,48 @@ namespace ScholarshipWebApplication.Controllers
             return View();
         }
         
-        public ActionResult Details(int? id)
+        public ActionResult DetailsSocial(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SocialScholarshipProps socialScholarshipProps = db.SocialProperties.Find(id);
-            if (socialScholarshipProps == null)
+            SocialScholarshipProps ScholarshipProps = db.SocialProperties.Find(id);
+            if (ScholarshipProps == null)
             {
                 return HttpNotFound();
             }
-            return View(socialScholarshipProps);
+            return View(ScholarshipProps);
         }
-        
+
+        public ActionResult DetailsPresident(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PresidentSchProp ScholarshipProps = db.PresidentSchProp.Find(id);
+            if (ScholarshipProps == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ScholarshipProps);
+        }
+
+        public ActionResult DetailsDisabled(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ForDisabledScholarshipProps ScholarshipProps = db.ForDisabledProperties.Find(id);
+            if (ScholarshipProps == null)
+            {
+                return HttpNotFound();
+            }
+            return View(ScholarshipProps);
+        }
+
         public ActionResult Delete(int? id)
         {
             if (id == null)

@@ -32,7 +32,7 @@ namespace ScholarshipWebApplication
                 user.UserName = "adrn.kaczmarek@gmail.com";
                 user.Email = "adrn.kaczmarek@gmail.com";
 
-                string userPWD = "PannaDydak";
+                string userPWD = "Karczycho123";
 
                 var chkUser = UserManager.Create(user, userPWD);
                 
