@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System;
+using System.Web.Helpers;
 
 namespace ScholarshipWebApplication.Controllers
 {
@@ -18,9 +19,19 @@ namespace ScholarshipWebApplication.Controllers
         
         public ActionResult Index()
         {
-            return View();
+            Dates model = new Dates();
+
+
+            var query = from dates in db.Dates where dates.what == 0 select dates;
+
+            model.ListDates = query.ToList();
+
+           
+
+            return View(model);
         }
         
+        [Authorize]
         public ActionResult AccomodationDoc()
         {
             //Create db context object here 
@@ -108,10 +119,11 @@ namespace ScholarshipWebApplication.Controllers
 
         [HttpPost]
         [ActionName("CallChangefun")]
-        public ActionResult CallChangefun( ViewModelToDorm model)
+        public ActionResult CallChangefun( ViewModelToDorm model, string part1, string part2, string part3, string part4)
         {
             if (ModelState.IsValid)
             {
+                model.DormDocProps.bankAccountNmb = part1 + part2 + part3 + part4;
 
                 model.Rooms.currentLodgersNumber += 1;
                 if (model.Rooms.roomSpace > model.Rooms.currentLodgersNumber)
@@ -143,12 +155,14 @@ namespace ScholarshipWebApplication.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AccomodationDoc(string RoomID, ViewModelToDorm model )
-        {                      
+        public ActionResult AccomodationDoc(string RoomID, ViewModelToDorm model, string part1, string part2, string part3, string part4)
+        {
 
+            
             if (ModelState.IsValid)
             {
-               
+                model.DormDocProps.bankAccountNmb = part1 + part2 + part3 + part4;
+
                 model.Rooms.currentLodgersNumber += 1;
                 if (model.Rooms.roomSpace> model.Rooms.currentLodgersNumber)
                 {

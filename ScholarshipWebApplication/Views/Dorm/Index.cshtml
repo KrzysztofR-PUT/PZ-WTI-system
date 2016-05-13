@@ -1,11 +1,30 @@
-﻿
+﻿@model ScholarshipWebApplication.Models.Database.Dates
+
 @{
     ViewBag.Title = "eAkademik";
+
+   
+    var grid = new WebGrid(source: Model.ListDates );
+
 }
 
 <div class="jumbotron">
     <h1>eAkademik</h1>
     <p class="lead">System umożliwiający rezerwację pokoi w domach studenckich.</p>
     <p><a class="btn btn-default" href=@Url.Action("AccomodationDoc", "Dorm")>Zarezerwuj pokój</a></p>
+</div>
+
+<div class="col-md-offset-8 col-md-4">
+    <h2>Terminy:</h2>
+    @grid.GetHtml(
+
+                displayHeader: false,
+                columns: grid.Columns(
+                grid.Column("data"),
+                grid.Column("name")
+
+    )
+            )
+
 </div>
 

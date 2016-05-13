@@ -207,6 +207,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Database\Dates.cs" />
     <Compile Include="Models\Database\ForDisabledScholarshipProps.cs" />
     <Compile Include="Models\Database\ForPresidentSchProp.cs" />
     <Compile Include="Models\Database\News.cs" />

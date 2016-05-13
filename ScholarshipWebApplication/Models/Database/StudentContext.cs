@@ -27,5 +27,7 @@ namespace ScholarshipWebApplication.Models.Database
         public DbSet<PresidentSchProp> PresidentSchProp { get; set; }
         public DbSet<ForPresidentSchProp> ForPresidentSchProp { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<Dates> Dates { get; set; }
+
     }
 }
