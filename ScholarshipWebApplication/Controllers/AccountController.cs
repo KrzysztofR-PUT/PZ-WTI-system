@@ -88,7 +88,6 @@ namespace ScholarshipWebApplication.Controllers
                     {
                         return RedirectToAction("Index", "Admin");
                     }                   
-                    SignInManager.SignIn(user, true, model.RememberMe);
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -165,8 +164,8 @@ namespace ScholarshipWebApplication.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     UserManager.AddToRole(user.Id, "Student");
+                    await SignInManager.SignInAsync(user, isPersistent:true, rememberBrowser:false);
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);

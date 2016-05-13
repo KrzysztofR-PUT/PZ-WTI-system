@@ -1,0 +1,90 @@
+﻿@model ScholarshipWebApplication.Models.Database.SocialScholarshipProps
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SocialScholarshipProps</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.kind)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kind)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.incomeYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.incomeYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.netIncome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.netIncome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lostIncome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lostIncome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gainedIncome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gainedIncome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.incomePerPersonPerMonth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.incomePerPersonPerMonth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.alimonyCuts)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.alimonyCuts)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bankAccountNmb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bankAccountNmb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.docState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.docState)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DocID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
