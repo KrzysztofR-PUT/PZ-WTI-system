@@ -1,10 +1,6 @@
 ﻿using ScholarshipWebApplication.Models.Database;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ScholarshipWebApplication.Controllers
@@ -12,14 +8,12 @@ namespace ScholarshipWebApplication.Controllers
     public class AdminController : Controller
     {
         private StudentContext db = new StudentContext();
-
-        // GET: SocialScholarshipProps
+        
         public ActionResult Index()
         {
-            return View(db.SocialProperties.ToList());
+            return View();
         }
-
-        // GET: SocialScholarshipProps/Details/5
+        
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -33,62 +27,7 @@ namespace ScholarshipWebApplication.Controllers
             }
             return View(socialScholarshipProps);
         }
-
-        // GET: SocialScholarshipProps/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: SocialScholarshipProps/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DocID,kind,incomeYear,netIncome,lostIncome,gainedIncome,incomePerPersonPerMonth,alimonyCuts,bankAccountNmb,docState")] SocialScholarshipProps socialScholarshipProps)
-        {
-            if (ModelState.IsValid)
-            {
-                db.SocialProperties.Add(socialScholarshipProps);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(socialScholarshipProps);
-        }
-
-        // GET: SocialScholarshipProps/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SocialScholarshipProps socialScholarshipProps = db.SocialProperties.Find(id);
-            if (socialScholarshipProps == null)
-            {
-                return HttpNotFound();
-            }
-            return View(socialScholarshipProps);
-        }
-
-        // POST: SocialScholarshipProps/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DocID,kind,incomeYear,netIncome,lostIncome,gainedIncome,incomePerPersonPerMonth,alimonyCuts,bankAccountNmb,docState")] SocialScholarshipProps socialScholarshipProps)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(socialScholarshipProps).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(socialScholarshipProps);
-        }
-
-        // GET: SocialScholarshipProps/Delete/5
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -102,8 +41,7 @@ namespace ScholarshipWebApplication.Controllers
             }
             return View(socialScholarshipProps);
         }
-
-        // POST: SocialScholarshipProps/Delete/5
+        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -114,13 +52,27 @@ namespace ScholarshipWebApplication.Controllers
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        public ActionResult Events()
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return View();
+        }
+
+        public ActionResult PresidentSch()
+        {
+            var query = from props in db.PresidentSchProp where props.docState == DocState.sended select props;
+            return View(query);
+        }
+
+        public ActionResult SocialSch()
+        {
+            var query = from props in db.SocialProperties where props.docState == DocState.sended select props;
+            return View(query);
+        }
+
+        public ActionResult DisabledSch()
+        {
+            var query = from props in db.ForDisabledProperties where props.docState == DocState.sended select props;
+            return View(query);
         }
     }
 }

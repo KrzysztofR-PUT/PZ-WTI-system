@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ScholarshipWebApplication.Models.Database.PresidentSchProp>
+
+@{
+    ViewBag.Title = "Listy formularzy";
+}
+
+<h2>Lista formularzy rektorskich</h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.bankAccountNmb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statement_statute)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statement_bankAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statement_dataAgreement)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.bankAccountNmb)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.statement_statute)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.statement_bankAccount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.statement_dataAgreement)
+        </td>
+        <td>
+            @Html.ActionLink("Szczegóły", "Details", new { id=item.DocID })
+        </td>
+    </tr>
+}
+
+</table>
