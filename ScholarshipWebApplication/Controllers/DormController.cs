@@ -34,6 +34,25 @@ namespace ScholarshipWebApplication.Controllers
         [Authorize]
         public ActionResult AccomodationDoc()
         {
+            var query2 = from dates in db.Dates where dates.what == 0 select dates;
+
+            List<Dates> ListDates = query2.ToList();
+            DateTime dt2 = DateTime.Now;
+            DateTime dt1 = ListDates.ElementAt(0).data;
+            ViewBag.dateCheck = false;
+
+            if (dt1.Date < dt2.Date)
+            {
+                
+                ViewBag.dateCheck = true;
+
+            }else
+            {
+                ViewBag.dateCheck = false;
+
+               
+            }
+
             //Create db context object here 
             ViewModelToDorm model = new ViewModelToDorm();
             //Get the value from database and then set it to ViewBag to pass it View

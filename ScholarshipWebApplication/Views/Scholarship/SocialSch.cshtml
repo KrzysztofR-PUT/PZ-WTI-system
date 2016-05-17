@@ -1,6 +1,8 @@
-﻿
+﻿@model ScholarshipWebApplication.Models.Database.Dates
+
 @{
     ViewBag.Title = "Stypendium socjalne";
+    var grid = new WebGrid(source: Model.ListDates);
 }
 
 <h2>Stypednium socjalne</h2>
@@ -9,3 +11,16 @@
 </p>
 <p><a class="btn btn-default" href=@Url.Action("SocialSchDoc", "Scholarship")>Wypełnij dokumenty</a></p>
 
+<div class="col-md-offset-8 col-md-4">
+    <h2>Terminy:</h2>
+    @grid.GetHtml(
+
+                displayHeader: false,
+                columns: grid.Columns(
+                grid.Column("data"),
+                grid.Column("name")
+
+    )
+            )
+
+</div>

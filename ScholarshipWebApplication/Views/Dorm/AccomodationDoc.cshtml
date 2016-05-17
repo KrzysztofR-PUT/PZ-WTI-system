@@ -9,17 +9,23 @@
 
 @using (Html.BeginForm())
 {
-    if (ViewBag.isSended == true)
+    if (ViewBag.dateCheck == true)
     {
+        @Html.Label("Minął termin przesłania dokumentu", new { htmlAttributes = new { @class = "control -label" } })
+    }
+    else
+    {
+        if (ViewBag.isSended == true)
+        {
         @Html.Label("Dokument został już przesłany!", new { htmlAttributes = new { @class = "control -label" } })
         <br />
         <p>
             @Html.LabelFor(model => model.DormDocProps.docState, new { htmlAttributes = new { @class = "control-label" } })
             @Html.Label(": " + Enumeration.getDescription(Model.DormDocProps.docState), new { htmlAttributes = new { @class = "control-label" } })
         </p>
-    }
-    else
-    {
+        }
+        else
+        {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -151,6 +157,7 @@
                 @Html.ActionLink("Powrót", "Index", "Dorm")
             </div>
         </div>
+        }
     }
 }
 
