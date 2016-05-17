@@ -11,7 +11,10 @@
 {
     if (ViewBag.dateCheck == true)
     {
-        @Html.Label("Minął termin przesłania dokumentu", new { htmlAttributes = new { @class = "control -label" } })
+        @Html.Label("Minął termin przesłania dokumentu lub nie rozpoczęto jeszcze procesu kwaterunkowego", new { htmlAttributes = new { @class = "control -label" } })
+        <div>
+            @Html.ActionLink("Powrót", "Index", "Dorm")
+        </div>
     }
     else
     {

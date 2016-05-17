@@ -23,6 +23,13 @@ namespace ScholarshipWebApplication.Models.Database
 
         public Document what { get; set; }
 
+        public DateTime? startdate { get; set; }
+
+        public DateTime? enddate { get; set; }
+
+        public bool? importantdate { get; set; }
+
+
         [NotMapped]
        public List<Dates> ListDates { get; set; }
     }

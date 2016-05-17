@@ -34,21 +34,22 @@ namespace ScholarshipWebApplication.Controllers
         [Authorize]
         public ActionResult AccomodationDoc()
         {
-            var query2 = from dates in db.Dates where dates.what == 0 select dates;
+            var query2 = from dates in db.Dates where dates.what == Document.kwaterunkowy where dates.importantdate == true select dates;
 
             List<Dates> ListDates = query2.ToList();
-            DateTime dt2 = DateTime.Now;
-            DateTime dt1 = ListDates.ElementAt(0).data;
+            DateTime dt3 = DateTime.Now;
+            DateTime dt1 =Convert.ToDateTime(ListDates.ElementAt(0).startdate);
+            DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
             ViewBag.dateCheck = false;
 
-            if (dt1.Date < dt2.Date)
+            if (dt1.Date <= dt3.Date  && dt3.Date <= dt2.Date)
             {
                 
-                ViewBag.dateCheck = true;
+                ViewBag.dateCheck = false;
 
             }else
             {
-                ViewBag.dateCheck = false;
+                ViewBag.dateCheck = true;
 
                
             }
