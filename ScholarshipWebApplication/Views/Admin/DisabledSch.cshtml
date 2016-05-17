@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ScholarshipWebApplication.Models.Database.ForDisabledScholarshipProps>
+
+@{
+    ViewBag.Title = "Listy formularzy";
+}
+
+<h2>Lista formularzy dla niepełnosprawnych</h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.disabilityLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.decisionStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.decisionEndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isDecisionPermanent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bankAccountNmb)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.disabilityLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.decisionStartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.decisionEndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isDecisionPermanent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bankAccountNmb)
+        </td>
+        <td>
+            @Html.ActionLink("Szczegóły", "DetailsDisabled", new { id=item.DocID })
+        </td>
+    </tr>
+}
+</table>

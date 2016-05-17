@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ScholarshipWebApplication.Models.Database.SocialScholarshipProps>
+
+@{
+    ViewBag.Title = "Listy formularzy";
+}
+
+<h2>Lista formularzy socjalnych</h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.kind)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.incomeYear)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.netIncome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lostIncome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gainedIncome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.incomePerPersonPerMonth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.alimonyCuts)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bankAccountNmb)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.kind)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.incomeYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.netIncome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lostIncome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gainedIncome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.incomePerPersonPerMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.alimonyCuts)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.bankAccountNmb)
+            </td>
+            <td>
+                @Html.ActionLink("Szczegóły", "DetailsSocial", new { id = item.DocID })
+            </td>
+        </tr>
+    }
+
+</table>

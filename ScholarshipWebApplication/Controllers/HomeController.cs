@@ -16,6 +16,10 @@ namespace ScholarshipWebApplication.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            if (User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Index", "Admin");
+            }
             return View();
         }
 

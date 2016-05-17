@@ -1,0 +1,57 @@
+﻿@model ScholarshipWebApplication.Models.Database.PresidentSchProp
+
+@{
+    ViewBag.Title = "Formularz";
+}
+
+<h2>Szczegóły</h2>
+
+<div>
+    <h4>Stypendium rektora</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.docState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.docState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bankAccountNmb)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bankAccountNmb)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.statement_statute)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.statement_statute)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.statement_bankAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.statement_bankAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.statement_dataAgreement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.statement_dataAgreement)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Powrót", "PresidentSch")
+</p>

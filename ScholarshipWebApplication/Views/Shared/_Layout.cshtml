@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    var isStudent = User.IsInRole("Student");
+}
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -17,23 +20,48 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Student1.0", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @if (isStudent)
+                {
+                    @Html.ActionLink("Student1.0", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("Student1.0", "Index", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+                }
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li class="dropdown">
-                        <a href="/Scholarship/Index">eStypendium</a>
-                        <ul class="dropdown-menu">
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Stypednium rektora", "PresidentSch", "Scholarship")</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Stypednium socjalne", "SocialSch", "Scholarship")</li>
-                            <li class="divider"></li>
-                            <li>@Html.ActionLink("Stypednium dla niepełnosprawnych", "DisabledSch", "Scholarship")</li>
-                        </ul>
-                    </li>
-                    <li>@Html.ActionLink("eAkademik", "Index", "Dorm")</li>
+                    @if (isStudent)
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>                    
+                        <li class="dropdown">
+                            <a href="/Scholarship/Index">eStypendium</a>
+                            <ul class="dropdown-menu">
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Stypednium rektora", "PresidentSch", "Scholarship")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Stypednium socjalne", "SocialSch", "Scholarship")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Stypednium dla niepełnosprawnych", "DisabledSch", "Scholarship")</li>
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("eAkademik", "Index", "Dorm")</li>
+                    }
+                    else
+                    {
+                        <li class="dropdown">
+                            <a href="/Admin/PresidentSch">Złożone formularze</a>
+                            <ul class="dropdown-menu">
+                                <li class="divider"/>
+                                <li>@Html.ActionLink("Stypednium rektora", "PresidentSch", "Admin")</li>
+                                <li class="divider" />
+                                <li>@Html.ActionLink("Stypednium socjalne", "SocialSch", "Admin")</li>
+                                <li class="divider" />
+                                <li>@Html.ActionLink("Stypednium dla niepełnosprawnych", "DisabledSch", "Admin")</li>
+                            </ul>
+                        </li>
+                        <li>@Html.ActionLink("Edytor wydarzeń", "Events", "Admin")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
