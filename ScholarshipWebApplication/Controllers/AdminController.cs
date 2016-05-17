@@ -1,7 +1,9 @@
 ﻿using ScholarshipWebApplication.Models.Database;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace ScholarshipWebApplication.Controllers
 {
@@ -56,30 +58,6 @@ namespace ScholarshipWebApplication.Controllers
             return View(ScholarshipProps);
         }
 
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SocialScholarshipProps socialScholarshipProps = db.SocialProperties.Find(id);
-            if (socialScholarshipProps == null)
-            {
-                return HttpNotFound();
-            }
-            return View(socialScholarshipProps);
-        }
-        
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            SocialScholarshipProps socialScholarshipProps = db.SocialProperties.Find(id);
-            db.SocialProperties.Remove(socialScholarshipProps);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         public ActionResult Events()
         {
             return View();
@@ -101,6 +79,75 @@ namespace ScholarshipWebApplication.Controllers
         {
             var query = from props in db.ForDisabledProperties where props.docState == DocState.sended select props;
             return View(query);
+        }       
+
+        [HttpPost]
+        public ActionResult ChangeDisabledState(int ?id, string method )
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ForDisabledScholarshipProps ScholarshipProps = db.ForDisabledProperties.Find(id);
+            if (ScholarshipProps == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                ScholarshipProps.docState = getDocState(method);
+                db.SaveChanges();
+            }
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        public ActionResult ChangeSocialState(int? id, string method)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SocialScholarshipProps ScholarshipProps = db.SocialProperties.Find(id);
+            if (ScholarshipProps == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                ScholarshipProps.docState = getDocState(method);
+                db.SaveChanges();
+            }
+            return new EmptyResult();
+        }
+
+        [HttpPost]
+        public ActionResult ChangePresidentState(int? id, string method)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PresidentSchProp ScholarshipProps = db.PresidentSchProp.Find(id);
+            if (ScholarshipProps == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                ScholarshipProps.docState = getDocState(method);
+                db.SaveChanges();
+            }
+            return new EmptyResult();
+        }
+
+        private DocState getDocState( string method )
+        {
+            if (method == "accepted")
+                return DocState.accepted;
+            else if (method == "reject")
+                return DocState.rejected;
+            else return DocState.sended;
         }
     }
 }

@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Listy formularzy";
+    int i = 0;
 }
 
 <h2>Lista formularzy socjalnych</h2>
@@ -37,7 +38,9 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        i++;
+        var docId = "container" + i;
+        <tr id=@docId>
             <td>
                 @Html.DisplayFor(modelItem => item.kind)
             </td>
@@ -64,6 +67,18 @@
             </td>
             <td>
                 @Html.ActionLink("Szczegóły", "DetailsSocial", new { id = item.DocID })
+                @Ajax.ActionLink("Zaakceptuj", "ChangeSocialState", new { id = item.DocID, method = "accepted" }, new AjaxOptions
+                {
+                   HttpMethod = "POST",
+                   InsertionMode = InsertionMode.Replace,
+                   UpdateTargetId = @docId
+                })
+                @Ajax.ActionLink("Odrzuć", "ChangeSocialState", new { id = item.DocID, method = "reject" }, new AjaxOptions
+                {
+                   HttpMethod = "POST",
+                   InsertionMode = InsertionMode.Replace,
+                   UpdateTargetId = @docId
+                })
             </td>
         </tr>
     }

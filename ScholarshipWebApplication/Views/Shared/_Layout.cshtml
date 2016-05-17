@@ -1,5 +1,6 @@
 ﻿@{ 
     var isStudent = User.IsInRole("Student");
+    var isAdmin = User.IsInRole("Admin");
 }
 <!DOCTYPE html>
 <html>
@@ -24,9 +25,13 @@
                 {
                     @Html.ActionLink("Student1.0", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 }
-                else
+                else if(isAdmin)
                 {
                     @Html.ActionLink("Student1.0", "Index", "Admin", new { area = "" }, new { @class = "navbar-brand" })
+                }
+                else
+                {
+                    @Html.ActionLink("Student1.0", "Login", "Account", new { area = "" }, new { @class = "navbar-brand" })
                 }
             </div>
             <div class="navbar-collapse collapse">
@@ -47,7 +52,7 @@
                         </li>
                         <li>@Html.ActionLink("eAkademik", "Index", "Dorm")</li>
                     }
-                    else
+                    else if(isAdmin)
                     {
                         <li class="dropdown">
                             <a href="/Admin/PresidentSch">Złożone formularze</a>

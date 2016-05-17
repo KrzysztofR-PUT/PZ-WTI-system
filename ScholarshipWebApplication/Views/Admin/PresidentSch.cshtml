@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Listy formularzy";
+    int i = 0;
 }
 
 <h2>Lista formularzy rektorskich</h2>
@@ -23,8 +24,11 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+@foreach (var item in Model)
+{
+    i++;
+    var docId = "container" + i;
+    <tr id=@docId>
         <td>
             @Html.DisplayFor(modelItem => item.bankAccountNmb)
         </td>
@@ -39,6 +43,18 @@
         </td>
         <td>
             @Html.ActionLink("Szczegóły", "DetailsPresident", new { id=item.DocID })
+            @Ajax.ActionLink("Zaakceptuj", "ChangePresidentState", new { id = item.DocID, method = "accepted" }, new AjaxOptions
+           {
+               HttpMethod = "POST",
+               InsertionMode = InsertionMode.Replace,
+               UpdateTargetId = @docId
+           })
+            @Ajax.ActionLink("Odrzuć", "ChangePresidentState", new { id = item.DocID, method = "reject" }, new AjaxOptions
+           {
+               HttpMethod = "POST",
+               InsertionMode = InsertionMode.Replace,
+               UpdateTargetId = @docId
+           })
         </td>
     </tr>
 }
