@@ -8,10 +8,8 @@ namespace ScholarshipWebApplication.Models.Database
     {
         lekki, umiarkowany, znaczny
     }
-    public class ForDisabledScholarshipProps
+    public class ForDisabledScholarshipProps : StatefulDoc
     {
-        [Key]
-        public int DocID { get; set; }
         [DisplayName("Stopień niepełnosprawności")]
         public DisabilityLevel disabilityLevel { get; set; }
         [DisplayName("Ważne od")]
@@ -22,8 +20,6 @@ namespace ScholarshipWebApplication.Models.Database
         public bool isDecisionPermanent { get; set; }
         [DisplayName("Numer konta")]
         public string bankAccountNmb { get; set; }
-        [DisplayName("Status dokumentu")]
-        public DocState docState { get; set; }
         public virtual Student student { get; set; }
     }
 }

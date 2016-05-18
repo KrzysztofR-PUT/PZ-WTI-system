@@ -1,5 +1,5 @@
-﻿@model IEnumerable<ScholarshipWebApplication.Models.Database.SocialScholarshipProps>
-
+﻿@model PagedList.IPagedList<ScholarshipWebApplication.Models.Database.SocialScholarshipProps>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Listy formularzy";
     int i = 0;
@@ -10,28 +10,28 @@
 <table class="table table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.kind)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().kind)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.incomeYear)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().incomeYear)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.netIncome)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().netIncome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.lostIncome)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().lostIncome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.gainedIncome)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().gainedIncome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.incomePerPersonPerMonth)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().incomePerPersonPerMonth)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.alimonyCuts)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().alimonyCuts)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.bankAccountNmb)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().bankAccountNmb)
         </th>
         <th></th>
     </tr>
@@ -82,5 +82,6 @@
             </td>
         </tr>
     }
-
 </table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("SocialSch", new { page }))

@@ -1,5 +1,5 @@
-﻿@model IEnumerable<ScholarshipWebApplication.Models.Database.PresidentSchProp>
-
+﻿@model PagedList.IPagedList<ScholarshipWebApplication.Models.Database.PresidentSchProp>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Listy formularzy";
     int i = 0;
@@ -10,16 +10,16 @@
 <table class="table table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.bankAccountNmb)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().bankAccountNmb)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.statement_statute)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().statement_statute)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.statement_bankAccount)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().statement_bankAccount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.statement_dataAgreement)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().statement_dataAgreement)
         </th>
         <th></th>
     </tr>
@@ -58,5 +58,6 @@
         </td>
     </tr>
 }
-
 </table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("PresidentSch", new { page }))

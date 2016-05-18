@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using ScholarshipWebApplication.Models;
+﻿using ScholarshipWebApplication.Models;
 using ScholarshipWebApplication.Models.Database;
 using System.Web.Mvc;
 using System.Linq;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
-using System.Diagnostics;
 
 namespace ScholarshipWebApplication.Controllers
 {
@@ -22,14 +18,9 @@ namespace ScholarshipWebApplication.Controllers
         public ActionResult PresidentSch()
         {
             Dates model = new Dates();
-
-
             var query = from dates in db.Dates where dates.what == Document.rektorski select dates;
 
             model.ListDates = query.ToList();
-
-
-
             return View(model);
         }
 
@@ -81,14 +72,9 @@ namespace ScholarshipWebApplication.Controllers
         public ActionResult DisabledSch()
         {
             Dates model = new Dates();
-
-
             var query = from dates in db.Dates where dates.what == Document.niepelnosprawny select dates;
 
             model.ListDates = query.ToList();
-
-
-
             return View(model);
         }
 
@@ -136,14 +122,9 @@ namespace ScholarshipWebApplication.Controllers
         public ActionResult SocialSch()
         {
             Dates model = new Dates();
-
-
             var query = from dates in db.Dates where dates.what == Document.socjalny select dates;
 
             model.ListDates = query.ToList();
-
-
-
             return View(model);
         }
 

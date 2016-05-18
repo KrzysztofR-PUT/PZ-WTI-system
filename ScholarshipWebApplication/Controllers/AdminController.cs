@@ -1,61 +1,49 @@
 ﻿using ScholarshipWebApplication.Models.Database;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
+using PagedList;
+using System.Data.Entity;
 
 namespace ScholarshipWebApplication.Controllers
 {
     public class AdminController : Controller
     {
         private StudentContext db = new StudentContext();
+        private const int pageSize = 6;
         
         public ActionResult Index()
         {
             return View();
         }
         
-        public ActionResult DetailsSocial(int? id)
+        private ActionResult Details<T>(DbSet<T> set, int? id) where T : StatefulDoc
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SocialScholarshipProps ScholarshipProps = db.SocialProperties.Find(id);
+            T ScholarshipProps = set.Find(id);
             if (ScholarshipProps == null)
             {
                 return HttpNotFound();
             }
             return View(ScholarshipProps);
+        }
+
+        public ActionResult DetailsSocial(int? id)
+        {
+            return Details(db.SocialProperties, id);
         }
 
         public ActionResult DetailsPresident(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PresidentSchProp ScholarshipProps = db.PresidentSchProp.Find(id);
-            if (ScholarshipProps == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ScholarshipProps);
+            return Details(db.PresidentSchProp, id);
         }
 
         public ActionResult DetailsDisabled(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ForDisabledScholarshipProps ScholarshipProps = db.ForDisabledProperties.Find(id);
-            if (ScholarshipProps == null)
-            {
-                return HttpNotFound();
-            }
-            return View(ScholarshipProps);
+            return Details(db.ForDisabledProperties, id);
         }
 
         public ActionResult Events()
@@ -63,32 +51,35 @@ namespace ScholarshipWebApplication.Controllers
             return View();
         }
 
-        public ActionResult PresidentSch()
+        private ActionResult query<T>(DbSet<T> set, int? page) where T : StatefulDoc
         {
-            var query = from props in db.PresidentSchProp where props.docState == DocState.sended select props;
-            return View(query);
+            int pageNumber = (page ?? 1);
+            var query = from props in set where props.docState == DocState.sended select props;
+            return View(query.OrderBy(s => s.DocID).ToPagedList(pageNumber, pageSize));
         }
 
-        public ActionResult SocialSch()
+        public ActionResult PresidentSch(int? page)
         {
-            var query = from props in db.SocialProperties where props.docState == DocState.sended select props;
-            return View(query);
+            return query(db.PresidentSchProp, page);
         }
 
-        public ActionResult DisabledSch()
+        public ActionResult SocialSch(int? page)
         {
-            var query = from props in db.ForDisabledProperties where props.docState == DocState.sended select props;
-            return View(query);
+            return query(db.SocialProperties, page);
+        }
+
+        public ActionResult DisabledSch(int? page)
+        {
+            return query(db.ForDisabledProperties, page);
         }       
 
-        [HttpPost]
-        public ActionResult ChangeDisabledState(int ?id, string method )
+        private ActionResult changeStateView<T>(DbSet<T> set, int? id, string method) where T : StatefulDoc
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ForDisabledScholarshipProps ScholarshipProps = db.ForDisabledProperties.Find(id);
+            T ScholarshipProps = set.Find(id);
             if (ScholarshipProps == null)
             {
                 return HttpNotFound();
@@ -99,46 +90,24 @@ namespace ScholarshipWebApplication.Controllers
                 db.SaveChanges();
             }
             return new EmptyResult();
+        }
+
+        [HttpPost]
+        public ActionResult ChangeDisabledState(int ?id, string method )
+        {
+            return changeStateView(db.ForDisabledProperties, id, method);
         }
 
         [HttpPost]
         public ActionResult ChangeSocialState(int? id, string method)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SocialScholarshipProps ScholarshipProps = db.SocialProperties.Find(id);
-            if (ScholarshipProps == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                ScholarshipProps.docState = getDocState(method);
-                db.SaveChanges();
-            }
-            return new EmptyResult();
+            return changeStateView(db.SocialProperties, id, method);
         }
 
         [HttpPost]
         public ActionResult ChangePresidentState(int? id, string method)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PresidentSchProp ScholarshipProps = db.PresidentSchProp.Find(id);
-            if (ScholarshipProps == null)
-            {
-                return HttpNotFound();
-            }
-            else
-            {
-                ScholarshipProps.docState = getDocState(method);
-                db.SaveChanges();
-            }
-            return new EmptyResult();
+            return changeStateView(db.PresidentSchProp, id, method);
         }
 
         private DocState getDocState( string method )

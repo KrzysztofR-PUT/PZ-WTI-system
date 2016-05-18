@@ -1,5 +1,5 @@
-﻿@model IEnumerable<ScholarshipWebApplication.Models.Database.ForDisabledScholarshipProps>
-
+﻿@model PagedList.IPagedList<ScholarshipWebApplication.Models.Database.ForDisabledScholarshipProps>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Listy formularzy";
     int i = 0;
@@ -10,19 +10,19 @@
 <table class="table table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.disabilityLevel)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().disabilityLevel)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.decisionStartDate)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().decisionStartDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.decisionEndDate)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().decisionEndDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.isDecisionPermanent)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().isDecisionPermanent)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.bankAccountNmb)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().bankAccountNmb)
         </th>
         <th></th>
     </tr>
@@ -64,3 +64,5 @@
     </tr>
 }
 </table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("DisabledSch", new { page }))
