@@ -25,6 +25,7 @@ namespace ScholarshipWebApplication.Models.Database
         public float incomePerPersonPerMonth { get; set; }
         [DisplayName("Odliczenie z tytułu alimentów")]
         public float alimonyCuts { get; set; }
+        [DisplayName("Nr konta bankowego")]
         public string bankAccountNmb { get; set; }
         public virtual Student student { get; set; }
         public virtual IList<FamilyMembersIncome> familyMembersIncome { get; set; }
