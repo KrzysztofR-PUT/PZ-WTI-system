@@ -47,7 +47,7 @@ else
                             <td>@Html.EditorFor(model => model.income.firstName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
                             <th>@Html.EditorFor(model => model.income.lastName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</th>
                             <td>@Html.EditorFor(model => model.income.birthdayYear, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
-                            <td>@Html.EditorFor(model => model.income.relationship, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                            <td>@Html.EnumDropDownListFor(model => model.income.relationship, htmlAttributes : new { @class = "form-control" } )</td>
                             <td>@Html.EditorFor(model => model.income.taxedIncome, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
                             <td>@Html.EditorFor(model => model.income.untaxedIncome, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
                             <td>@Html.EditorFor(model => model.income.total, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
@@ -109,7 +109,7 @@ else
                 <div class="form-group">
                     @Html.LabelFor(model => model.props.kind, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.props.kind, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EnumDropDownListFor(model => model.props.kind,  htmlAttributes : new { @class = "form-control" } )
                     </div>
                 </div>
 

@@ -317,12 +317,12 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
     <Content Include="Views\Admin\DetailsSocial.cshtml" />
-    <Content Include="Views\Admin\Events.cshtml" />
     <Content Include="Views\Admin\SocialSch.cshtml" />
     <Content Include="Views\Admin\PresidentSch.cshtml" />
     <Content Include="Views\Admin\DisabledSch.cshtml" />
     <Content Include="Views\Admin\DetailsPresident.cshtml" />
     <Content Include="Views\Admin\DetailsDisabled.cshtml" />
+    <Content Include="Views\Admin\Events.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

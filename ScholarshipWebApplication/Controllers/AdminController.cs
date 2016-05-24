@@ -51,6 +51,17 @@ namespace ScholarshipWebApplication.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Events(Dates dates)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Dates.Add(dates);
+                db.SaveChanges();
+            }
+            return View();
+        }
+
         private ActionResult query<T>(DbSet<T> set, int? page) where T : StatefulDoc
         {
             int pageNumber = (page ?? 1);
