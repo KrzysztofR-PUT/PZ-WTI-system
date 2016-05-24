@@ -6,7 +6,16 @@
 
 <h2>Stypendium socjalne</h2>
 
-@if (ViewBag.isSended == true)
+
+@if (ViewBag.dateCheck == true)
+    {
+        @Html.Label("Minął termin przesłania dokumentu lub nie rozpoczęto jeszcze  odbierania dokumentów dla stypendium socjalnego", new { htmlAttributes = new { @class = "control -label" } })
+       
+    }
+    else
+    {
+
+if (ViewBag.isSended == true)
 {
     @Html.Label("Dokument został już przesłany!", new { htmlAttributes = new { @class = "control-label" } })
     <br/>
@@ -156,6 +165,19 @@ else
                 </div>
 
                 <div class="form-group">
+                    @Html.LabelFor(model => model.props.bankAccountNmb, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="form-inline col-md-10">
+                        <input style="width:45px" type="text" name="part1" class="form-control" maxlength="2">
+                        <span> - </span>
+                        <input style="width:90px" type="text" name="part2" class="form-control" maxlength="8">
+                        <span> - </span>
+                        <input style="width:90px" type="text" name="part3" class="form-control" maxlength="8">
+                        <span> - </span>
+                        <input style="width:90px" type="text" name="part4" class="form-control" maxlength="8">
+                    </div>
+                </div>
+
+                <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Zatwierdź" class="btn btn-default" />
                     </div>
@@ -163,6 +185,7 @@ else
             </div>        
         }
     </div>
+}
 }
 <div>
     @Html.ActionLink("Powrót", "Index", "Scholarship")
