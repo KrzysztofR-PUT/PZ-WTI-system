@@ -34,24 +34,19 @@ namespace ScholarshipWebApplication.Controllers
             var query2 = from dates in db.Dates where dates.what == Document.rektorski where dates.importantdate == true select dates;
 
             List<Dates> ListDates = query2.ToList();
-            DateTime dt3 = DateTime.Now;
-            DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
-            DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
-            ViewBag.dateCheck = false;
-
-            if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+            ViewBag.dateCheck = true;
+            if (ListDates.Count > 0)
             {
-
+                DateTime dt3 = DateTime.Now;
+                DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
+                DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
                 ViewBag.dateCheck = false;
 
+                if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+                {
+                    ViewBag.dateCheck = false;
+                }
             }
-            else
-            {
-                ViewBag.dateCheck = true;
-
-
-            }
-
 
             PresidentSchProp pr = new PresidentSchProp();
 
@@ -77,8 +72,7 @@ namespace ScholarshipWebApplication.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult PresidentSchDoc(PresidentSchProp pr, string part1, string part2, string part3,string part4)
-        {
-           
+        {           
             if (ModelState.IsValid)
             {
             string x = part1 + part2 + part3 + part4;
@@ -91,8 +85,6 @@ namespace ScholarshipWebApplication.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-           
-
             return View();
         }
 
@@ -112,24 +104,19 @@ namespace ScholarshipWebApplication.Controllers
             var query2 = from dates in db.Dates where dates.what == Document.niepelnosprawny where dates.importantdate == true select dates;
 
             List<Dates> ListDates = query2.ToList();
-            DateTime dt3 = DateTime.Now;
-            DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
-            DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
-            ViewBag.dateCheck = false;
-
-            if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+            ViewBag.dateCheck = true;
+            if (ListDates.Count > 0)
             {
-
+                DateTime dt3 = DateTime.Now;
+                DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
+                DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
                 ViewBag.dateCheck = false;
 
+                if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+                {
+                    ViewBag.dateCheck = false;
+                }
             }
-            else
-            {
-                ViewBag.dateCheck = true;
-
-
-            }
-
             ApplicationUser user = getUser();
             ViewBag.isSended = false;
 
@@ -185,24 +172,19 @@ namespace ScholarshipWebApplication.Controllers
             var query2 = from dates in db.Dates where dates.what == Document.socjalny where dates.importantdate == true select dates;
 
             List<Dates> ListDates = query2.ToList();
-            DateTime dt3 = DateTime.Now;
-            DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
-            DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
-            ViewBag.dateCheck = false;
-
-            if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+            ViewBag.dateCheck = true;
+            if (ListDates.Count > 0)
             {
-
+                DateTime dt3 = DateTime.Now;
+                DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
+                DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
                 ViewBag.dateCheck = false;
 
+                if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+                {
+                    ViewBag.dateCheck = false;
+                }
             }
-            else
-            {
-                ViewBag.dateCheck = true;
-
-
-            }
-
 
             ApplicationUser user = getUser();
             ViewBag.isSended = false;

@@ -8,7 +8,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System;
-using System.Web.Helpers;
 
 namespace ScholarshipWebApplication.Controllers
 {
@@ -37,6 +36,7 @@ namespace ScholarshipWebApplication.Controllers
             var query2 = from dates in db.Dates where dates.what == Document.kwaterunkowy where dates.importantdate == true select dates;
 
             List<Dates> ListDates = query2.ToList();
+            ViewBag.dateCheck = true;
             if (ListDates.Count > 0)
             {
                 DateTime dtNow = DateTime.Now;
@@ -48,15 +48,8 @@ namespace ScholarshipWebApplication.Controllers
                 {
                     ViewBag.dateCheck = false;
                 }
-                else
-                {
-                    ViewBag.dateCheck = true;
-                }
             }
-            else
-            {
-                ViewBag.dateCheck = true;
-            }
+
             ViewModelToDorm model = new ViewModelToDorm();
             IEnumerable<SelectListItem> items = db.Room.AsNoTracking().Where(c => c.isAvailable == 1).Select(c => new SelectListItem
             {
