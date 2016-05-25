@@ -3,10 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ScholarshipWebApplication.Models.Database
 {
-    public class DormDocumentProps
+    public class DormDocumentProps : StatefulDoc
     {
-        [Key]
-        public int DocID { get; set; }
         [Required(ErrorMessage = "Pole jest niezbędne")]
         [DisplayName("Dystans od domu")]
         public int DistanceFromHome { get; set; }
@@ -30,8 +28,6 @@ namespace ScholarshipWebApplication.Models.Database
         public string CurrentAcademicYear { get; set; }       
         [DisplayName("Numer konta do zwrotu kaucji")]
         public string bankAccountNmb { get; set; }
-        [DisplayName("Status dokumentu")]
-        public DocState docState { get; set; }
         public virtual Student student { get; set; }
         public virtual Rooms Room { get; set; }
     }

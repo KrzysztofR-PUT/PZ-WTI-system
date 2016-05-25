@@ -1,7 +1,8 @@
-﻿@model IEnumerable<ScholarshipWebApplication.Models.Database.SocialScholarshipProps>
-
+﻿@model PagedList.IPagedList<ScholarshipWebApplication.Models.Database.SocialScholarshipProps>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Listy formularzy";
+    int i = 0;
 }
 
 <h2>Lista formularzy socjalnych</h2>
@@ -9,35 +10,37 @@
 <table class="table table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.kind)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().kind)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.incomeYear)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().incomeYear)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.netIncome)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().netIncome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.lostIncome)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().lostIncome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.gainedIncome)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().gainedIncome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.incomePerPersonPerMonth)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().incomePerPersonPerMonth)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.alimonyCuts)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().alimonyCuts)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.bankAccountNmb)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().bankAccountNmb)
         </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
+        i++;
+        var docId = "container" + i;
+        <tr id=@docId>
             <td>
                 @Html.DisplayFor(modelItem => item.kind)
             </td>
@@ -64,8 +67,21 @@
             </td>
             <td>
                 @Html.ActionLink("Szczegóły", "DetailsSocial", new { id = item.DocID })
+                @Ajax.ActionLink("Zaakceptuj", "ChangeSocialState", new { id = item.DocID, method = "accepted" }, new AjaxOptions
+                {
+                   HttpMethod = "POST",
+                   InsertionMode = InsertionMode.Replace,
+                   UpdateTargetId = @docId
+                })
+                @Ajax.ActionLink("Odrzuć", "ChangeSocialState", new { id = item.DocID, method = "reject" }, new AjaxOptions
+                {
+                   HttpMethod = "POST",
+                   InsertionMode = InsertionMode.Replace,
+                   UpdateTargetId = @docId
+                })
             </td>
         </tr>
     }
-
 </table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("SocialSch", new { page }))

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 
 namespace ScholarshipWebApplication.Models.Database
 {
@@ -10,10 +9,8 @@ namespace ScholarshipWebApplication.Models.Database
         zwiększone_akademik,
         zwiększone_inne
     }
-    public class SocialScholarshipProps
+    public class SocialScholarshipProps : StatefulDoc
     {
-        [Key]
-        public int DocID { get; set; }
         [DisplayName("Rodzaj")]
         public SocialScholarshipKind kind { get; set; }
         [DisplayName("Przychód roczny")]
@@ -30,8 +27,6 @@ namespace ScholarshipWebApplication.Models.Database
         public float alimonyCuts { get; set; }
         [DisplayName("Nr konta bankowego")]
         public string bankAccountNmb { get; set; }
-        [DisplayName("Status dokumentu")]
-        public DocState docState { get; set; }
         public virtual Student student { get; set; }
         public virtual IList<FamilyMembersIncome> familyMembersIncome { get; set; }
     }

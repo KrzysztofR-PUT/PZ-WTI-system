@@ -1,7 +1,8 @@
-﻿@model IEnumerable<ScholarshipWebApplication.Models.Database.PresidentSchProp>
-
+﻿@model PagedList.IPagedList<ScholarshipWebApplication.Models.Database.PresidentSchProp>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Listy formularzy";
+    int i = 0;
 }
 
 <h2>Lista formularzy rektorskich</h2>
@@ -9,22 +10,25 @@
 <table class="table table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.bankAccountNmb)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().bankAccountNmb)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.statement_statute)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().statement_statute)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.statement_bankAccount)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().statement_bankAccount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.statement_dataAgreement)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().statement_dataAgreement)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+@foreach (var item in Model)
+{
+    i++;
+    var docId = "container" + i;
+    <tr id=@docId>
         <td>
             @Html.DisplayFor(modelItem => item.bankAccountNmb)
         </td>
@@ -39,8 +43,21 @@
         </td>
         <td>
             @Html.ActionLink("Szczegóły", "DetailsPresident", new { id=item.DocID })
+            @Ajax.ActionLink("Zaakceptuj", "ChangePresidentState", new { id = item.DocID, method = "accepted" }, new AjaxOptions
+           {
+               HttpMethod = "POST",
+               InsertionMode = InsertionMode.Replace,
+               UpdateTargetId = @docId
+           })
+            @Ajax.ActionLink("Odrzuć", "ChangePresidentState", new { id = item.DocID, method = "reject" }, new AjaxOptions
+           {
+               HttpMethod = "POST",
+               InsertionMode = InsertionMode.Replace,
+               UpdateTargetId = @docId
+           })
         </td>
     </tr>
 }
-
 </table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("PresidentSch", new { page }))

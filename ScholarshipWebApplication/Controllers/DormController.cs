@@ -8,7 +8,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using System;
-using System.Web.Helpers;
 
 namespace ScholarshipWebApplication.Controllers
 {
@@ -37,26 +36,21 @@ namespace ScholarshipWebApplication.Controllers
             var query2 = from dates in db.Dates where dates.what == Document.kwaterunkowy where dates.importantdate == true select dates;
 
             List<Dates> ListDates = query2.ToList();
-            DateTime dt3 = DateTime.Now;
-            DateTime dt1 =Convert.ToDateTime(ListDates.ElementAt(0).startdate);
-            DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
-            ViewBag.dateCheck = false;
-
-            if (dt1.Date <= dt3.Date  && dt3.Date <= dt2.Date)
+            ViewBag.dateCheck = true;
+            if (ListDates.Count > 0)
             {
-                
+                DateTime dtNow = DateTime.Now;
+                DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
+                DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
                 ViewBag.dateCheck = false;
 
-            }else
-            {
-                ViewBag.dateCheck = true;
-
-               
+                if (dt1.Date <= dtNow.Date && dtNow.Date <= dt2.Date)
+                {
+                    ViewBag.dateCheck = false;
+                }
             }
 
-            //Create db context object here 
             ViewModelToDorm model = new ViewModelToDorm();
-            //Get the value from database and then set it to ViewBag to pass it View
             IEnumerable<SelectListItem> items = db.Room.AsNoTracking().Where(c => c.isAvailable == 1).Select(c => new SelectListItem
             {
                 

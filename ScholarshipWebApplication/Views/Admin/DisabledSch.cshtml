@@ -1,7 +1,8 @@
-﻿@model IEnumerable<ScholarshipWebApplication.Models.Database.ForDisabledScholarshipProps>
-
+﻿@model PagedList.IPagedList<ScholarshipWebApplication.Models.Database.ForDisabledScholarshipProps>
+@using PagedList.Mvc;
 @{
     ViewBag.Title = "Listy formularzy";
+    int i = 0;
 }
 
 <h2>Lista formularzy dla niepełnosprawnych</h2>
@@ -9,25 +10,28 @@
 <table class="table table-hover">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.disabilityLevel)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().disabilityLevel)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.decisionStartDate)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().decisionStartDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.decisionEndDate)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().decisionEndDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.isDecisionPermanent)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().isDecisionPermanent)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.bankAccountNmb)
+            @Html.DisplayNameFor(model => model.FirstOrDefault().bankAccountNmb)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
+    i++;
+    var docId = "container" + i;
+    
+    <tr id=@docId>
         <td>
             @Html.DisplayFor(modelItem => item.disabilityLevel)
         </td>
@@ -45,7 +49,20 @@
         </td>
         <td>
             @Html.ActionLink("Szczegóły", "DetailsDisabled", new { id=item.DocID })
+            @Ajax.ActionLink("Zaakceptuj", "ChangeDisabledState", new { id = item.DocID, method = "accepted" }, new AjaxOptions
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = @docId
+            })
+                @Ajax.ActionLink("Odrzuć", "ChangeDisabledState", new { id = item.DocID, method = "reject" }, new AjaxOptions {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = @docId
+            })
         </td>
     </tr>
 }
 </table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("DisabledSch", new { page }))

@@ -1,22 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace ScholarshipWebApplication.Models.Database
 {
-    public class PresidentSchProp
+    public class PresidentSchProp : StatefulDoc
     {
-        [Key]
-        public int DocID { get; set; }
-
         public virtual Student student { get; set; }
 
         public virtual ForPresidentSchProp table { get; set; }
-        [DisplayName("Status dokumentu")]
-        public DocState docState { get; set; }
 
         [DisplayName("Numer konta")]
         public string bankAccountNmb { get; set; }

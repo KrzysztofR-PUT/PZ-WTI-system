@@ -8,14 +8,14 @@
 @using (Html.BeginForm())
 {
 
+
     if (ViewBag.dateCheck == true)
     {
-        @Html.Label("Minął termin przesłania dokumentu lub nie rozpoczęto jeszcze  odbierania dokumentów dla stypendium dla osób niepełnosprawnych", new { htmlAttributes = new { @class = "control -label" } })
-       
+        @Html.Label("Minął termin przesłania dokumentu lub nie rozpoczęto jeszcze odbierania dokumentów dla stypendium dla osób niepełnosprawnych", new { htmlAttributes = new { @class = "control -label" } })
+
     }
     else
     {
-
         if (ViewBag.isSended == true)
         {
         @Html.Label("Dokument został już przesłany!", new { htmlAttributes = new { @class = "control -label" } })
@@ -63,7 +63,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.decisionStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.decisionStartDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.decisionStartDate, new { htmlAttributes = new { @class = "datepicker", @type = "date" } })
                                     @Html.ValidationMessageFor(model => model.decisionStartDate, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -71,12 +71,27 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.decisionEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.decisionEndDate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.decisionEndDate, new { htmlAttributes = new { @class = "datepicker", @type = "date" } })
                                     @Html.ValidationMessageFor(model => model.decisionEndDate, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </td>
                     </tr>
+
+                    <tr>
+                        <td>
+                            @Html.CheckBoxFor(model => model.isDecisionPermanent) na stałe
+                        </td>
+                    </tr>
+
+                    
+                </tbody>
+            </table>
+
+            <br />
+
+            <table class="table table-bordered">
+                <tbody>
                     <tr>
                         <td>
                             <div class="form-group">
@@ -93,35 +108,32 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            @Html.CheckBoxFor(model => model.isDecisionPermanent) na stałe
-                        </td>
-                    </tr>
-                   
                 </tbody>
             </table>
         </div>
 
-        <div class="form-horizontal">
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10" >
-                    <input type="submit" value="Wyślij wniosek" class="btn btn-default" align="center"/>
+
+
+
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Wyślij wniosek" class="btn btn-default" align="center" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
         }
     }
 }
 
-        <br />
+                <br />
 
-        <div>
-            @Html.ActionLink("Powrót", "Index", "Scholarship")
-        </div>
+                <div>
+                    @Html.ActionLink("Powrót", "Index", "Scholarship")
+                </div>
 
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
-        }
+                @section Scripts {
+                    @Scripts.Render("~/bundles/jqueryval")
+                }
 

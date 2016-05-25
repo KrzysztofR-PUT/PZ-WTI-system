@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using ScholarshipWebApplication.Models;
+﻿using ScholarshipWebApplication.Models;
 using ScholarshipWebApplication.Models.Database;
 using System.Web.Mvc;
 using System.Linq;
@@ -23,14 +21,9 @@ namespace ScholarshipWebApplication.Controllers
         public ActionResult PresidentSch()
         {
             Dates model = new Dates();
-
-
             var query = from dates in db.Dates where dates.what == Document.rektorski select dates;
 
             model.ListDates = query.ToList();
-
-
-
             return View(model);
         }
 
@@ -41,24 +34,19 @@ namespace ScholarshipWebApplication.Controllers
             var query2 = from dates in db.Dates where dates.what == Document.rektorski where dates.importantdate == true select dates;
 
             List<Dates> ListDates = query2.ToList();
-            DateTime dt3 = DateTime.Now;
-            DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
-            DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
-            ViewBag.dateCheck = false;
-
-            if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+            ViewBag.dateCheck = true;
+            if (ListDates.Count > 0)
             {
-
+                DateTime dt3 = DateTime.Now;
+                DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
+                DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
                 ViewBag.dateCheck = false;
 
+                if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+                {
+                    ViewBag.dateCheck = false;
+                }
             }
-            else
-            {
-                ViewBag.dateCheck = true;
-
-
-            }
-
 
             PresidentSchProp pr = new PresidentSchProp();
 
@@ -84,13 +72,12 @@ namespace ScholarshipWebApplication.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult PresidentSchDoc(PresidentSchProp pr, string part1, string part2, string part3,string part4)
-        {
-           
+        {           
             if (ModelState.IsValid)
             {
-                string x = part1 + part2 + part3 + part4;
+            string x = part1 + part2 + part3 + part4;
 
-                pr.bankAccountNmb = x;
+            pr.bankAccountNmb = x;
                 pr.docState = DocState.sended;
                 pr.student = db.Student.Find(getUser().student.StudentID);                
                 db.PresidentSchProp.Add(pr);
@@ -98,22 +85,15 @@ namespace ScholarshipWebApplication.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-           
-
             return View();
         }
 
         public ActionResult DisabledSch()
         {
             Dates model = new Dates();
-
-
             var query = from dates in db.Dates where dates.what == Document.niepelnosprawny select dates;
 
             model.ListDates = query.ToList();
-
-
-
             return View(model);
         }
 
@@ -124,24 +104,19 @@ namespace ScholarshipWebApplication.Controllers
             var query2 = from dates in db.Dates where dates.what == Document.niepelnosprawny where dates.importantdate == true select dates;
 
             List<Dates> ListDates = query2.ToList();
-            DateTime dt3 = DateTime.Now;
-            DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
-            DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
-            ViewBag.dateCheck = false;
-
-            if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+            ViewBag.dateCheck = true;
+            if (ListDates.Count > 0)
             {
-
+                DateTime dt3 = DateTime.Now;
+                DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
+                DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
                 ViewBag.dateCheck = false;
 
+                if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+                {
+                    ViewBag.dateCheck = false;
+                }
             }
-            else
-            {
-                ViewBag.dateCheck = true;
-
-
-            }
-
             ApplicationUser user = getUser();
             ViewBag.isSended = false;
 
@@ -184,14 +159,9 @@ namespace ScholarshipWebApplication.Controllers
         public ActionResult SocialSch()
         {
             Dates model = new Dates();
-
-
             var query = from dates in db.Dates where dates.what == Document.socjalny select dates;
 
             model.ListDates = query.ToList();
-
-
-
             return View(model);
         }
 
@@ -202,24 +172,19 @@ namespace ScholarshipWebApplication.Controllers
             var query2 = from dates in db.Dates where dates.what == Document.socjalny where dates.importantdate == true select dates;
 
             List<Dates> ListDates = query2.ToList();
-            DateTime dt3 = DateTime.Now;
-            DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
-            DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
-            ViewBag.dateCheck = false;
-
-            if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+            ViewBag.dateCheck = true;
+            if (ListDates.Count > 0)
             {
-
+                DateTime dt3 = DateTime.Now;
+                DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
+                DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
                 ViewBag.dateCheck = false;
 
+                if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
+                {
+                    ViewBag.dateCheck = false;
+                }
             }
-            else
-            {
-                ViewBag.dateCheck = true;
-
-
-            }
-
 
             ApplicationUser user = getUser();
             ViewBag.isSended = false;
