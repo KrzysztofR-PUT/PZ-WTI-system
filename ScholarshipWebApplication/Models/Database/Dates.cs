@@ -17,7 +17,7 @@ namespace ScholarshipWebApplication.Models.Database
     {
         [Key]
         public int DateID { get; set; }
-        public DateTime data { get; set; }
+      
         
         public string name { get; set; }
 
