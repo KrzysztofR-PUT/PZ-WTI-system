@@ -55,6 +55,7 @@
     <div class="form-horizontal">
         <table class="table table-hover">
             <tbody>
+           
                 @if (Model != null && Model.Studies != null)
                 {
                     for (int i = 0; i < Model.Studies.Count; i++)
@@ -72,12 +73,14 @@
                         @Html.HiddenFor(model => Model.Studies[i].Year)
                         @Html.HiddenFor(model => Model.Studies[i].course.CourseName)
                         @Html.HiddenFor(model => Model.Studies[i].course.Section)
+                        
                     }
                 }
             </tbody>
         </table>
     </div>
     <h3>Informacje o tobie</h3>
+  
     <br />
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -86,6 +89,7 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Student.FirstName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Student.FirstName, "", new { @class = "text-danger" })
+           
             </div>
         </div>
 
@@ -94,6 +98,7 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Student.LastName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Student.LastName, "", new { @class = "text-danger" })
+               
             </div>
         </div>
 
@@ -102,6 +107,7 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Student.RegistryNumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Student.RegistryNumber, "", new { @class = "text-danger" })
+               
             </div>
         </div>
 
@@ -110,6 +116,7 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Student.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Student.PhoneNumber, "", new { @class = "text-danger" })
+               
             </div>
         </div>
 
@@ -118,6 +125,7 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Student.Email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Student.Email, "", new { @class = "text-danger" })
+               
             </div>
         </div>
         <br /><h3>Adres</h3>
@@ -128,6 +136,7 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Adres.Street, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Adres.Street, "", new { @class = "text-danger" })
+            
             </div>
         </div>
 
@@ -136,6 +145,7 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Adres.FlatNumber, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Adres.FlatNumber, "", new { @class = "text-danger" })
+               
             </div>
         </div>
 
@@ -144,6 +154,7 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Adres.PostCode, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Adres.PostCode, "", new { @class = "text-danger" })
+            
             </div>
         </div>
 
@@ -152,6 +163,7 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Adres.Place, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Adres.Place, "", new { @class = "text-danger" })
+             
             </div>
         </div>
 
@@ -160,10 +172,26 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Adres.Voivodeship, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Adres.Voivodeship, "", new { @class = "text-danger" })
+           
+
+
             </div>
         </div>
 
 
+        @if (ViewBag.Edit == true)
+        {
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Edytuj" class="btn btn-default" />
+                </div>
+                <div>
+                    @Html.ActionLink("Back", "Index", "Home")
+                </div>
+            </div>
+        }
+        else
+        {
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Zatwierdź" class="btn btn-default" />
@@ -171,7 +199,7 @@
             <div>
                 @Html.ActionLink("Powrót", "Index", "Home")
             </div>
-        </div>
+        </div>}
     </div>
 }
 
