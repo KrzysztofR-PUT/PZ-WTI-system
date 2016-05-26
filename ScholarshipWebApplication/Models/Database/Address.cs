@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace ScholarshipWebApplication.Models.Database
 {
     public class Address
-    {
-      
+    {      
         [Key]
         public int AddressID { get; set; }
 

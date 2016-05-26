@@ -28,6 +28,6 @@ namespace ScholarshipWebApplication.Models.Database
         public DbSet<ForPresidentSchProp> ForPresidentSchProp { get; set; }
         public DbSet<News> News { get; set; }
         public DbSet<Dates> Dates { get; set; }
-
+        public DbSet<UnreadNews> UnreadNews { get; set; }
     }
 }
