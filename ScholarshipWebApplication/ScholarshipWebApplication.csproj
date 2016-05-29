@@ -233,8 +233,8 @@
     <Compile Include="Models\Database\SocialScholarshipProps.cs" />
     <Compile Include="Models\Database\Student.cs" />
     <Compile Include="Models\Database\Studies.cs" />
-    <Compile Include="Models\Database\UnreadNews.cs" />
     <Compile Include="Models\Helpers\Enumeration.cs" />
+    <Compile Include="Models\Helpers\UsersAccess.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SocialMembersViewModel.cs" />

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using ScholarshipWebApplication.Models;
+using ScholarshipWebApplication.Models.Helpers;
 using System.Web.Mvc;
 
 namespace ScholarshipWebApplication.Controllers
@@ -9,8 +9,7 @@ namespace ScholarshipWebApplication.Controllers
     {
         protected ApplicationUser getUser()
         {
-            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
-            return manager.FindById(User.Identity.GetUserId());
+            return UsersAccess.getUserManager().FindById(User.Identity.GetUserId());
         }        
     }
 }

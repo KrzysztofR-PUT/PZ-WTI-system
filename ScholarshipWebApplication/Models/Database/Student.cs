@@ -28,7 +28,7 @@ namespace ScholarshipWebApplication.Models.Database
         [DataType(DataType.EmailAddress, ErrorMessage ="Niepoprawny email. Poprawny: jozek@gmail.com")]
         [DisplayName("e-mail")]
         public string Email { get; set; }
-
+        public int UnreadNewsCount { get; set; }
         public virtual Address address { get; set; }
         public virtual IList<Studies> studies { get; set; }
     }
