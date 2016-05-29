@@ -6,8 +6,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-
-
+using ScholarshipWebApplication.Models.Helpers;
 
 namespace ScholarshipWebApplication.Controllers
 {
@@ -71,6 +70,18 @@ namespace ScholarshipWebApplication.Controllers
         [Authorize]
         public ActionResult News()
         {
+            var manager = UsersAccess.getUserManager();
+            ApplicationUser user = manager.FindById(User.Identity.GetUserId());
+            if (user != null)
+            {
+                if (user.UnreadNewsCount > 0)
+                {
+                    user.UnreadNewsCount = 0;
+                    manager.UpdateAsync(user);
+                    db.SaveChanges();
+                }
+            }
+
             var newsList = db.News.ToList();
                 
             return View(newsList);

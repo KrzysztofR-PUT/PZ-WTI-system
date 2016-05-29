@@ -1,7 +1,20 @@
 ﻿@{ 
     bool isStudent = User.IsInRole("Student");
+    string displayCount = "";
+    if (isStudent) {
+        ApplicationUser user = UsersAccess.getUserManager().FindById(User.Identity.GetUserId());
+        if (user != null)
+        {
+            int count = user.UnreadNewsCount;
+            if (count > 0)
+            {
+                displayCount = "("+count.ToString()+")";
+            }
+        }
+    }
 }
-
+@using ScholarshipWebApplication.Models.Helpers
+@using ScholarshipWebApplication.Models
 @using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
@@ -15,7 +28,7 @@
         </li>
         @if (isStudent)
         {
-            <li>@Html.ActionLink("Ogłoszenia", "News", "Home")</li>
+            <li>@Html.ActionLink("Ogłoszenia"+ @displayCount, "News", "Home")</li>
         }
         <li><a href="javascript:document.getElementById('logoutForm').submit()">Wyloguj</a></li>
     </ul>
