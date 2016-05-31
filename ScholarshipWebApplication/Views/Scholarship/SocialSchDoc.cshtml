@@ -4,189 +4,189 @@
     ViewBag.Title = "Stypendium socjalne";
 }
 
-<h2>Stypendium socjalne</h2>
+<div id="container">
+    <h2>Stypendium socjalne</h2>
 
 
-@if (ViewBag.dateCheck == true)
+    @if (ViewBag.dateCheck == true)
     {
         @Html.Label("Minął termin przesłania dokumentu lub nie rozpoczęto jeszcze  odbierania dokumentów dla stypendium socjalnego", new { htmlAttributes = new { @class = "control -label" } })
-       
+
     }
     else
     {
 
-if (ViewBag.isSended == true)
-{
-    @Html.Label("Dokument został już przesłany!", new { htmlAttributes = new { @class = "control-label" } })
-    <br/>
-    <p>
-        @Html.LabelFor(model => model.props.docState, new { htmlAttributes = new { @class = "control-label" } })
-        @Html.Label(": "+ Enumeration.getDescription(Model.props.docState), new { htmlAttributes = new { @class = "control-label" } })
-    </p>
-}
-else
-{
-    <div id="container">
-        @using (Ajax.BeginForm("SocialSchDoc", "Scholarship", new AjaxOptions
+        if (ViewBag.isSended == true)
         {
-            HttpMethod = "POST",
-            InsertionMode = InsertionMode.Replace,
-            UpdateTargetId = "container"
-        }))
-        {
-            @Html.AntiForgeryToken()
-            <h3>Dochody poszczególnych członków rodziny</h3>
+            @Html.Label("Dokument został już przesłany!", new { htmlAttributes = new { @class = "control-label" } })
             <br />
-            <div class="form-horizontal">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>@Html.LabelFor(model => model.income.firstName)</th>
-                            <th>@Html.LabelFor(model => model.income.lastName)</th>
-                            <th>@Html.LabelFor(model => model.income.birthdayYear)</th>
-                            <th>@Html.LabelFor(model => model.income.relationship)</th>
-                            <th>@Html.LabelFor(model => model.income.taxedIncome)</th>
-                            <th>@Html.LabelFor(model => model.income.untaxedIncome)</th>
-                            <th>@Html.LabelFor(model => model.income.total)</th>
-                            <th>Akcja</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>@Html.EditorFor(model => model.income.firstName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
-                            <th>@Html.EditorFor(model => model.income.lastName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</th>
-                            <td>@Html.EditorFor(model => model.income.birthdayYear, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
-                            <td>@Html.EnumDropDownListFor(model => model.income.relationship, htmlAttributes : new { @class = "form-control" } )</td>
-                            <td>@Html.EditorFor(model => model.income.taxedIncome, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
-                            <td>@Html.EditorFor(model => model.income.untaxedIncome, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
-                            <td>@Html.EditorFor(model => model.income.total, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
-                            <td><input type="submit" value="Dodaj" class="btn btn-default" /></td>
-                        </tr>
-                        @if (Model != null && Model.incomes != null)
-                        {
-                            for (int i = 0; i < Model.incomes.Count; i++)
-                            {
-                                @Html.HiddenFor(model => Model.incomes[i].IncomeID)
-                                @Html.HiddenFor(model => Model.incomes[i].firstName)
-                                @Html.HiddenFor(model => Model.incomes[i].lastName)
-                                @Html.HiddenFor(model => Model.incomes[i].birthdayYear)
-                                @Html.HiddenFor(model => Model.incomes[i].relationship)
-                                @Html.HiddenFor(model => Model.incomes[i].taxedIncome)
-                                @Html.HiddenFor(model => Model.incomes[i].untaxedIncome)
-                                @Html.HiddenFor(model => Model.incomes[i].total)
-                            }
-                        }
-                    </tbody>
-                </table>
-            </div>
+            <p>
+                @Html.LabelFor(model => model.props.docState, new { htmlAttributes = new { @class = "control-label" } })
+                @Html.Label(": " + Enumeration.getDescription(Model.props.docState), new { htmlAttributes = new { @class = "control-label" } })
+            </p>
         }
-
-        @using (Html.BeginForm())
-        {        
-            @Html.AntiForgeryToken()
-            <div class="form-horizontal">
-                <table class="table table-hover">
-                    <tbody>
-                        @if (Model != null && Model.incomes != null)
-                        {
-                            for (int i = 0; i < Model.incomes.Count; i++)
-                            {
-                                <tr>
-                                    <td>@Html.DisplayFor(model => Model.incomes[i].firstName)</td>
-                                    <td>@Html.DisplayFor(model => Model.incomes[i].lastName)</td>
-                                    <td>@Html.DisplayFor(model => Model.incomes[i].birthdayYear)</td>
-                                    <td>@Html.DisplayFor(model => Model.incomes[i].relationship)</td>
-                                    <td>@Html.DisplayFor(model => Model.incomes[i].taxedIncome)</td>
-                                    <td>@Html.DisplayFor(model => Model.incomes[i].untaxedIncome)</td>
-                                    <td>@Html.DisplayFor(model => Model.incomes[i].total)</td>
-                                </tr>
-                                @Html.HiddenFor(model => Model.incomes[i].IncomeID)
-                                @Html.HiddenFor(model => Model.incomes[i].firstName)
-                                @Html.HiddenFor(model => Model.incomes[i].lastName)
-                                @Html.HiddenFor(model => Model.incomes[i].birthdayYear)
-                                @Html.HiddenFor(model => Model.incomes[i].relationship)
-                                @Html.HiddenFor(model => Model.incomes[i].taxedIncome)
-                                @Html.HiddenFor(model => Model.incomes[i].untaxedIncome)
-                                @Html.HiddenFor(model => Model.incomes[i].total)
-                            }
-                        }
-                    </tbody>
-                </table>
-
-                <h3>Informacje o przyznawanym stypendium</h3>
+        else
+        {
+            using (Ajax.BeginForm("SocialSchDoc", "Scholarship", new AjaxOptions
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "container"
+            }))
+            {
+                @Html.AntiForgeryToken()
+                <h3>Dochody poszczególnych członków rodziny</h3>
                 <br />
-                <div class="form-group">
-                    @Html.LabelFor(model => model.props.kind, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EnumDropDownListFor(model => model.props.kind,  htmlAttributes : new { @class = "form-control" } )
-                    </div>
+                <div class="form-horizontal">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>@Html.LabelFor(model => model.income.firstName)</th>
+                                <th>@Html.LabelFor(model => model.income.lastName)</th>
+                                <th>@Html.LabelFor(model => model.income.birthdayYear)</th>
+                                <th>@Html.LabelFor(model => model.income.relationship)</th>
+                                <th>@Html.LabelFor(model => model.income.taxedIncome)</th>
+                                <th>@Html.LabelFor(model => model.income.untaxedIncome)</th>
+                                <th>@Html.LabelFor(model => model.income.total)</th>
+                                <th>Akcja</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>@Html.EditorFor(model => model.income.firstName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                                <th>@Html.EditorFor(model => model.income.lastName, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</th>
+                                <td>@Html.EditorFor(model => model.income.birthdayYear, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                                <td>@Html.EnumDropDownListFor(model => model.income.relationship, htmlAttributes: new { @class = "form-control" })</td>
+                                <td>@Html.EditorFor(model => model.income.taxedIncome, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.income.untaxedIncome, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                                <td>@Html.EditorFor(model => model.income.total, new { htmlAttributes = new { @class = "col-md-10 form-control" } })</td>
+                                <td><input type="submit" value="Dodaj" class="btn btn-default" /></td>
+                            </tr>
+                            @if (Model != null && Model.incomes != null)
+                        {
+                            for (int i = 0; i < Model.incomes.Count; i++)
+                            {
+                                    @Html.HiddenFor(model => Model.incomes[i].IncomeID)
+                                    @Html.HiddenFor(model => Model.incomes[i].firstName)
+                                    @Html.HiddenFor(model => Model.incomes[i].lastName)
+                                    @Html.HiddenFor(model => Model.incomes[i].birthdayYear)
+                                    @Html.HiddenFor(model => Model.incomes[i].relationship)
+                                    @Html.HiddenFor(model => Model.incomes[i].taxedIncome)
+                                    @Html.HiddenFor(model => Model.incomes[i].untaxedIncome)
+                                    @Html.HiddenFor(model => Model.incomes[i].total)
+                                }
+                            }
+                        </tbody>
+                    </table>
                 </div>
+            }
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.props.incomeYear, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.props.incomeYear, new { htmlAttributes = new { @class = "form-control" } })
-                    </div>
-                </div>
+            using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-horizontal">
+                    <table class="table table-hover">
+                        <tbody>
+                            @if (Model != null && Model.incomes != null)
+                        {
+                            for (int i = 0; i < Model.incomes.Count; i++)
+                            {
+                                    <tr>
+                                        <td>@Html.DisplayFor(model => Model.incomes[i].firstName)</td>
+                                        <td>@Html.DisplayFor(model => Model.incomes[i].lastName)</td>
+                                        <td>@Html.DisplayFor(model => Model.incomes[i].birthdayYear)</td>
+                                        <td>@Html.DisplayFor(model => Model.incomes[i].relationship)</td>
+                                        <td>@Html.DisplayFor(model => Model.incomes[i].taxedIncome)</td>
+                                        <td>@Html.DisplayFor(model => Model.incomes[i].untaxedIncome)</td>
+                                        <td>@Html.DisplayFor(model => Model.incomes[i].total)</td>
+                                    </tr>
+                                    @Html.HiddenFor(model => Model.incomes[i].IncomeID)
+                                    @Html.HiddenFor(model => Model.incomes[i].firstName)
+                                    @Html.HiddenFor(model => Model.incomes[i].lastName)
+                                    @Html.HiddenFor(model => Model.incomes[i].birthdayYear)
+                                    @Html.HiddenFor(model => Model.incomes[i].relationship)
+                                    @Html.HiddenFor(model => Model.incomes[i].taxedIncome)
+                                    @Html.HiddenFor(model => Model.incomes[i].untaxedIncome)
+                                    @Html.HiddenFor(model => Model.incomes[i].total)
+                                }
+                            }
+                        </tbody>
+                    </table>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.props.netIncome, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.props.netIncome, new { htmlAttributes = new { @class = "form-control" } })
+                    <h3>Informacje o przyznawanym stypendium</h3>
+                    <br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.props.kind, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EnumDropDownListFor(model => model.props.kind, htmlAttributes: new { @class = "form-control" })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.props.lostIncome, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.props.lostIncome, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.props.incomeYear, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.props.incomeYear, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.props.gainedIncome, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.props.gainedIncome, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.props.netIncome, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.props.netIncome, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.props.incomePerPersonPerMonth, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.props.incomePerPersonPerMonth, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.props.lostIncome, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.props.lostIncome, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.props.alimonyCuts, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.props.alimonyCuts, new { htmlAttributes = new { @class = "form-control" } })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.props.gainedIncome, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.props.gainedIncome, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.props.bankAccountNmb, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="form-inline col-md-10">
-                        <input style="width:45px" type="text" name="part1" class="form-control" maxlength="2">
-                        <span> - </span>
-                        <input style="width:90px" type="text" name="part2" class="form-control" maxlength="8">
-                        <span> - </span>
-                        <input style="width:90px" type="text" name="part3" class="form-control" maxlength="8">
-                        <span> - </span>
-                        <input style="width:90px" type="text" name="part4" class="form-control" maxlength="8">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.props.incomePerPersonPerMonth, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.props.incomePerPersonPerMonth, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Zatwierdź" class="btn btn-default" />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.props.alimonyCuts, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.props.alimonyCuts, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.props.bankAccountNmb, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="form-inline col-md-10">
+                            <input style="width:45px" type="text" name="part1" class="form-control" maxlength="2">
+                            <span> - </span>
+                            <input style="width:90px" type="text" name="part2" class="form-control" maxlength="8">
+                            <span> - </span>
+                            <input style="width:90px" type="text" name="part3" class="form-control" maxlength="8">
+                            <span> - </span>
+                            <input style="width:90px" type="text" name="part4" class="form-control" maxlength="8">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Zatwierdź" class="btn btn-default" />
+                        </div>
                     </div>
                 </div>
-            </div>        
+            }
         }
-    </div>
-}
-}
+    }
+</div>
 <div>
     @Html.ActionLink("Powrót", "Index", "Scholarship")
 </div>
