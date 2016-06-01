@@ -65,6 +65,7 @@ namespace ScholarshipWebApplication.Controllers
             {
                 db.Dates.Add(dates);
                 db.SaveChanges();
+                Broadcast.Instance.DisplayNotification("Nowe wydarzenie: " + dates.name);
             }
             return View();
         }

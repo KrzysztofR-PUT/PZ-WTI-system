@@ -72,18 +72,27 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        <ul id="notifications"></ul>
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Projekt WTI i PZ</p>
-        </footer>
+    <div class="container">
+        <div class="row">
+            <div class="body-content col-md-11">
+                @RenderBody()
+                <hr />
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Projekt WTI i PZ</p>
+                </footer>
+            </div>
+            <div class="container col-md-1">
+                <ul id="notifications"></ul>
+            </div>
+        </div>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/signalr/hubs"></script>
+    @if (isStudent)
+    {
+        @Scripts.Render("~/bundles/signalr");
+        <script src="~/signalr/hubs"></script>
+    }
     @RenderSection("scripts", required: false)
 </body>
 </html>

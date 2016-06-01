@@ -37,7 +37,7 @@ namespace ScholarshipWebApplication.Controllers.Hubs
 
         public void DisplayNotification(string message)
         {
-            Clients.All.updateStockPrice(message);
+            Clients.All.displayNotification(message);
         }
     }
 }

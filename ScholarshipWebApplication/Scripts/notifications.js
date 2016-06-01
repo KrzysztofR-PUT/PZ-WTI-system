@@ -2,12 +2,18 @@
     var chat = $.connection.broadcastHub;
 
     chat.client.displayNotification = function (message) {
-        $('#notifications').append('<li><strong>' + htmlEncode(message)
-            + '</strong></li>');
+        var $newnotify = $("<button></button>").text(message);
+        $newnotify.css("display", "none");
+        $newnotify.addClass("");
+        $("#notifications").append($newnotify);
+        $newnotify.fadeIn(1000);
+        $newnotify.click(function () {
+            $(this).fadeOut(1000, function () { $(this).remove() });
+        });
+        window.setTimeout(function(){
+            $($newnotify).fadeOut(1000, function () { $(this).remove() })
+        }, 10000);
     };
-});
 
-function htmlEncode(value) {
-    var encodedValue = $('<div />').text(value).html();
-    return encodedValue;
-}
+    $.connection.hub.start();
+});
