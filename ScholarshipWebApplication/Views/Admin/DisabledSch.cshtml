@@ -10,6 +10,18 @@
 <table class="table table-hover">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().student.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().student.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().student.RegistryNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().student.studies.FirstOrDefault().course.Section)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().disabilityLevel)
         </th>
         <th>
@@ -17,9 +29,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().decisionEndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().isDecisionPermanent)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().bankAccountNmb)
@@ -33,6 +42,18 @@
     
     <tr id=@docId>
         <td>
+            @Html.DisplayFor(modelItem => item.student.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.student.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.student.RegistryNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.student.studies.FirstOrDefault().course.Section)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.disabilityLevel)
         </td>
         <td>
@@ -40,9 +61,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.decisionEndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isDecisionPermanent)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.bankAccountNmb)

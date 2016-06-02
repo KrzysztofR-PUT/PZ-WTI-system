@@ -10,25 +10,25 @@
 <table class="table table-hover">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().student.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().student.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().student.RegistryNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().student.studies.FirstOrDefault().course.Section)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().kind)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().incomeYear)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().netIncome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().lostIncome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().gainedIncome)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().incomePerPersonPerMonth)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().alimonyCuts)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().bankAccountNmb)
@@ -42,25 +42,25 @@
         var docId = "container" + i;
         <tr id=@docId>
             <td>
+                @Html.DisplayFor(modelItem => item.student.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.student.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.student.RegistryNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.student.studies.FirstOrDefault().course.Section)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.kind)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.incomeYear)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.netIncome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lostIncome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.gainedIncome)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.incomePerPersonPerMonth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.alimonyCuts)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.bankAccountNmb)

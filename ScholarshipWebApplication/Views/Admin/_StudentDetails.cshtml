@@ -1,0 +1,94 @@
+﻿@model ScholarshipWebApplication.Models.Database.Student
+
+<dl class="dl-horizontal col-md-4">
+    <dt>
+        @Html.DisplayNameFor(model => model.FirstName)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.FirstName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.LastName)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.LastName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.RegistryNumber)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.RegistryNumber)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.PhoneNumber)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.PhoneNumber)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.address.Place)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.address.Place)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.address.PostCode)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.address.PostCode)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.address.Street)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.address.Street)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.address.FlatNumber)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.address.FlatNumber)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.studies.FirstOrDefault().course.CourseName)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.studies.FirstOrDefault().course.CourseName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.studies.FirstOrDefault().course.Section)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.studies.FirstOrDefault().course.Section)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.studies.FirstOrDefault().Year)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.studies.FirstOrDefault().Year)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.studies.FirstOrDefault().Form)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.studies.FirstOrDefault().Form)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.studies.FirstOrDefault().Level)
+    </dt>
+    <dd>
+        @Html.DisplayFor(model => model.studies.FirstOrDefault().Level)
+    </dd>
+</dl>

@@ -10,16 +10,22 @@
 <table class="table table-hover">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().student.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().student.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().student.RegistryNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().student.studies.FirstOrDefault().course.Section)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstOrDefault().table.average)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.FirstOrDefault().bankAccountNmb)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().statement_statute)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().statement_bankAccount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstOrDefault().statement_dataAgreement)
         </th>
         <th></th>
     </tr>
@@ -30,16 +36,22 @@
     var docId = "container" + i;
     <tr id=@docId>
         <td>
+            @Html.DisplayFor(modelItem => item.student.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.student.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.student.RegistryNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.student.studies.FirstOrDefault().course.Section)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.table.average)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.bankAccountNmb)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.statement_statute)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.statement_bankAccount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.statement_dataAgreement)
         </td>
         <td>
             @Html.ActionLink("Szczegóły", "DetailsPresident", new { id=item.DocID })
