@@ -10,7 +10,7 @@
     <h4>Stypendium dla osób niepełnosprawnych</h4>
     <hr />
     <div class="container">
-        <div class="row">
+        <section class="row">
             @Html.Partial("~/Views/Admin/_StudentDetails.cshtml", Model.student)
             <dl class="dl-horizontal col-md-8">
                 <dt>
@@ -53,7 +53,7 @@
                     @Html.DisplayFor(model => model.bankAccountNmb)
                 </dd>
             </dl>
-        </div>
+        </section>
    </div>
 </div>
 <p>

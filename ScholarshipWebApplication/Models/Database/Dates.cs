@@ -24,7 +24,7 @@ namespace ScholarshipWebApplication.Models.Database
         [DisplayName("Data zakończenia")]
         public DateTime? enddate { get; set; }
         [DisplayName("Czy okres składania dokumentu")]
-        public bool? importantdate { get; set; }
+        public bool importantdate { get; set; }
 
         [NotMapped]
        public List<Dates> ListDates { get; set; }
