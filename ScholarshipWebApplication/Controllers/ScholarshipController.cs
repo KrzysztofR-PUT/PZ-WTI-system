@@ -38,13 +38,14 @@ namespace ScholarshipWebApplication.Controllers
                 DateTime dt3 = DateTime.Now;
                 DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
                 DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
-                ViewBag.dateCheck = false;
 
                 if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
                 {
                     ViewBag.dateCheck = false;
                 }
-            }
+            }else
+                ViewBag.dateCheck = false;
+
 
             PresidentSchProp pr = new PresidentSchProp();
 
@@ -108,13 +109,16 @@ namespace ScholarshipWebApplication.Controllers
                 DateTime dt3 = DateTime.Now;
                 DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
                 DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
-                ViewBag.dateCheck = false;
+           
 
                 if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
                 {
                     ViewBag.dateCheck = false;
                 }
             }
+            else
+                ViewBag.dateCheck = false;
+
             ApplicationUser user = getUser();
             ViewBag.isSended = false;
 
@@ -176,13 +180,15 @@ namespace ScholarshipWebApplication.Controllers
                 DateTime dt3 = DateTime.Now;
                 DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
                 DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
-                ViewBag.dateCheck = false;
+              
 
                 if (dt1.Date <= dt3.Date && dt3.Date <= dt2.Date)
                 {
                     ViewBag.dateCheck = false;
                 }
             }
+            else
+                ViewBag.dateCheck = false;
 
             ApplicationUser user = getUser();
             ViewBag.isSended = false;

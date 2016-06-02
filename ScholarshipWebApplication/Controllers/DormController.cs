@@ -42,13 +42,14 @@ namespace ScholarshipWebApplication.Controllers
                 DateTime dtNow = DateTime.Now;
                 DateTime dt1 = Convert.ToDateTime(ListDates.ElementAt(0).startdate);
                 DateTime dt2 = Convert.ToDateTime(ListDates.ElementAt(0).enddate);
-                ViewBag.dateCheck = false;
+               
 
                 if (dt1.Date <= dtNow.Date && dtNow.Date <= dt2.Date)
                 {
                     ViewBag.dateCheck = false;
                 }
-            }
+            }else
+                ViewBag.dateCheck = false;
 
             ViewModelToDorm model = new ViewModelToDorm();
             IEnumerable<SelectListItem> items = db.Room.AsNoTracking().Where(c => c.isAvailable == 1).Select(c => new SelectListItem
