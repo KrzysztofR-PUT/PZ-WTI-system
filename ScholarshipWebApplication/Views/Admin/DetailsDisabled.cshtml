@@ -9,56 +9,52 @@
 <div>
     <h4>Stypendium dla osób niepełnosprawnych</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.disabilityLevel)
-        </dt>
+    <div class="container">
+        <div class="row">
+            @Html.Partial("~/Views/Admin/_StudentDetails.cshtml", Model.student)
+            <dl class="dl-horizontal col-md-8">
+                <dt>
+                    @Html.DisplayNameFor(model => model.disabilityLevel)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.disabilityLevel)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.disabilityLevel)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.decisionStartDate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.decisionStartDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.decisionStartDate)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.decisionStartDate)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.decisionEndDate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.decisionEndDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.decisionEndDate)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.decisionEndDate)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.isDecisionPermanent)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.isDecisionPermanent)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.isDecisionPermanent)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.isDecisionPermanent)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.bankAccountNmb)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.bankAccountNmb)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.bankAccountNmb)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.docState)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.docState)
-        </dd>
-
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.bankAccountNmb)
+                </dd>
+            </dl>
+        </div>
+   </div>
 </div>
 <p>
     @Html.ActionLink("Powrót", "DisabledSch")

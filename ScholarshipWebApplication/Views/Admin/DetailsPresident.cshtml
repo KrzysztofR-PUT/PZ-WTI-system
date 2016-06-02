@@ -9,48 +9,85 @@
 <div>
     <h4>Stypendium rektora</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.docState)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.docState)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.bankAccountNmb)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.bankAccountNmb)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.statement_statute)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.statement_statute)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.statement_bankAccount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.statement_bankAccount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.statement_dataAgreement)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.statement_dataAgreement)
-        </dd>
-
-    </dl>
+    <div class="container">
+        <div class="row">
+            @Html.Partial("~/Views/Admin/_StudentDetails.cshtml", Model.student)
+            <dl class="dl-horizontal col-md-8">
+                <dt>
+                    @Html.DisplayNameFor(model => model.bankAccountNmb)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.bankAccountNmb)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.table.average)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.table.average)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.table.superventions)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.table.superventions)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.table.artAchievements)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.table.artAchievements)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.table.activity_researchCircle)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.table.activity_researchCircle)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.table.europeanSportCompetition)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.table.europeanSportCompetition)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.table.polishSportCompetition)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.table.polishSportCompetition)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.table.worldcup)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.table.worldcup)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.table.LFMagazines_publ)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.table.LFMagazines_publ)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.table.polishMagazines_publ)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.table.polishMagazines_publ)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.table.externalMagazines_publ)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.table.externalMagazines_publ)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.table.anotherAchievements)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.table.anotherAchievements)
+                </dd>
+            </dl>
+        </div>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Powrót", "PresidentSch")

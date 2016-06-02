@@ -9,71 +9,76 @@
 <div>
     <h4>Stypendium socjalne</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.kind)
-        </dt>
+    <div class="container">
+        <div class="row">
+            @Html.Partial("~/Views/Admin/_StudentDetails.cshtml", Model.student)
+            <dl class="dl-horizontal col-md-6">
+                <dt>
+                    @Html.DisplayNameFor(model => model.kind)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.kind)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.kind)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.incomeYear)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.incomeYear)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.incomeYear)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.incomeYear)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.netIncome)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.netIncome)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.netIncome)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.netIncome)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lostIncome)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.lostIncome)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.lostIncome)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.lostIncome)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.gainedIncome)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.gainedIncome)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.gainedIncome)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.gainedIncome)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.incomePerPersonPerMonth)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.incomePerPersonPerMonth)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.incomePerPersonPerMonth)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.incomePerPersonPerMonth)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.alimonyCuts)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.alimonyCuts)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.alimonyCuts)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.alimonyCuts)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.bankAccountNmb)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.bankAccountNmb)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.bankAccountNmb)
-        </dd>
-    </dl>
+                <dd>
+                    @Html.DisplayFor(model => model.bankAccountNmb)
+                </dd>
+            </dl>
+        </div>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Powrót", "SocialSch")
